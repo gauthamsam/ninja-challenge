@@ -1,4 +1,12 @@
 NinjaChallenge::Application.routes.draw do
+  resources :students
+
+  resources :admins
+
+  resources :tests
+
+  get "home/index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

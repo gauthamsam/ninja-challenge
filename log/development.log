@@ -3519,3 +3519,209 @@ Processing by SurveyorController#update as JSON
   [1m[35mResponse Load (0.4ms)[0m  SELECT `responses`.* FROM `responses` WHERE `responses`.`response_set_id` = 4 ORDER BY created_at ASC
   [1m[36mSQL (0.2ms)[0m  [1mSELECT `dependencies`.`id` AS t0_r0, `dependencies`.`question_id` AS t0_r1, `dependencies`.`question_group_id` AS t0_r2, `dependencies`.`rule` AS t0_r3, `dependencies`.`created_at` AS t0_r4, `dependencies`.`updated_at` AS t0_r5, `dependency_conditions`.`id` AS t1_r0, `dependency_conditions`.`dependency_id` AS t1_r1, `dependency_conditions`.`rule_key` AS t1_r2, `dependency_conditions`.`question_id` AS t1_r3, `dependency_conditions`.`operator` AS t1_r4, `dependency_conditions`.`answer_id` AS t1_r5, `dependency_conditions`.`datetime_value` AS t1_r6, `dependency_conditions`.`integer_value` AS t1_r7, `dependency_conditions`.`float_value` AS t1_r8, `dependency_conditions`.`unit` AS t1_r9, `dependency_conditions`.`text_value` AS t1_r10, `dependency_conditions`.`string_value` AS t1_r11, `dependency_conditions`.`response_other` AS t1_r12, `dependency_conditions`.`created_at` AS t1_r13, `dependency_conditions`.`updated_at` AS t1_r14 FROM `dependencies` LEFT OUTER JOIN `dependency_conditions` ON `dependency_conditions`.`dependency_id` = `dependencies`.`id` WHERE `dependency_conditions`.`question_id` IN (4)[0m
 Completed 200 OK in 103ms (Views: 0.2ms | ActiveRecord: 80.7ms)
+
+
+Started GET "/surveys" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Connecting to database specified by database.yml
+Processing by SurveyorController#new as HTML
+  [1m[36mSurvey Load (0.3ms)[0m  [1mSELECT `surveys`.* FROM `surveys` [0m
+  Rendered /usr/lib/ruby/gems/1.8/gems/surveyor-1.0.0/app/views/surveyor/new.html.haml within layouts/surveyor_default (12.8ms)
+Completed 200 OK in 118ms (Views: 47.4ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/assets/surveyor/reset.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor/reset.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/surveyor/ui.slider.extras.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor/ui.slider.extras.css - 304 Not Modified (3ms)
+
+
+Started GET "/assets/surveyor/jquery-ui-timepicker-addon.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor/jquery-ui-timepicker-addon.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/surveyor/jquery-ui.custom.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor/jquery-ui.custom.css - 304 Not Modified (5ms)
+
+
+Started GET "/assets/surveyor.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/surveyor/dateinput.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor/dateinput.css - 304 Not Modified (4ms)
+
+
+Started GET "/assets/surveyor/jquery.tools.min.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor/jquery.tools.min.js - 304 Not Modified (9ms)
+
+
+Started GET "/assets/surveyor/jquery-ui.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor/jquery-ui.js - 304 Not Modified (13ms)
+
+
+Started GET "/assets/surveyor/jquery.surveyor.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor/jquery.surveyor.js - 304 Not Modified (5ms)
+
+
+Started GET "/assets/surveyor_all.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor_all.js - 304 Not Modified (10ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /custom.css - 304 Not Modified (2ms)
+
+
+Started GET "/assets/surveyor_all.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor_all.css - 304 Not Modified (48ms)
+
+
+Started GET "/assets/surveyor/jquery-ui-timepicker-addon.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor/jquery-ui-timepicker-addon.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/surveyor/jquery.selectToUISlider.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:10 -0700 2012
+Served asset /surveyor/jquery.selectToUISlider.js - 304 Not Modified (3ms)
+
+
+Started GET "/assets/rails.png" for 127.0.0.1 at Sun Oct 28 14:24:11 -0700 2012
+Served asset /rails.png - 200 OK (1ms)
+
+
+Started GET "/home" for 127.0.0.1 at Sun Oct 28 14:24:19 -0700 2012
+
+ActionController::RoutingError (No route matches [GET] "/home"):
+  actionpack (3.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.8) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.8) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.8) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.8) lib/rails/engine.rb:479:in `call'
+  railties (3.2.8) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.8) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+  /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+  /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+  /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+  /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+  /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+  rack (1.4.1) lib/rack/handler/webrick.rb:13:in `run'
+  rack (1.4.1) lib/rack/server.rb:265:in `start'
+  railties (3.2.8) lib/rails/commands/server.rb:70:in `start'
+  railties (3.2.8) lib/rails/commands.rb:55
+  railties (3.2.8) lib/rails/commands.rb:50:in `tap'
+  railties (3.2.8) lib/rails/commands.rb:50
+  script/rails:6:in `require'
+  script/rails:6
+
+
+  Rendered /usr/lib/ruby/gems/1.8/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/routing_error.erb within rescues/layout (0.5ms)
+
+
+Started GET "/home/index" for 127.0.0.1 at Sun Oct 28 14:24:25 -0700 2012
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.2ms)
+Compiled home.css  (22ms)  (pid 3961)
+Compiled application.css  (42ms)  (pid 3961)
+Compiled jquery.js  (5ms)  (pid 3961)
+Compiled jquery_ujs.js  (0ms)  (pid 3961)
+Compiled home.js  (463ms)  (pid 3961)
+Compiled application.js  (910ms)  (pid 3961)
+Completed 200 OK in 1189ms (Views: 1188.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /application.css - 200 OK (21ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /jquery.js - 200 OK (6ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /home.css - 200 OK (2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /jquery_ujs.js - 200 OK (4ms)
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /home.js - 200 OK (1ms)
+
+
+Started GET "/assets/surveyor/reset.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor/reset.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor/dateinput.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor/dateinput.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /application.js - 200 OK (18ms)
+
+
+Started GET "/assets/surveyor/jquery-ui.custom.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor/jquery-ui.custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor/jquery-ui-timepicker-addon.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor/jquery-ui-timepicker-addon.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor/ui.slider.extras.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor/ui.slider.extras.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/custom.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /custom.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor_all.css?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor_all.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor/jquery.tools.min.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor/jquery.tools.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor/jquery-ui.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor/jquery-ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor/jquery-ui-timepicker-addon.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor/jquery-ui-timepicker-addon.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor/jquery.surveyor.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor/jquery.surveyor.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor/jquery.selectToUISlider.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor/jquery.selectToUISlider.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/surveyor_all.js?body=1" for 127.0.0.1 at Sun Oct 28 14:24:26 -0700 2012
+Served asset /surveyor_all.js - 304 Not Modified (0ms)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml

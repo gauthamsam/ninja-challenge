@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  choice1: MyString
+  choice2: MyString
+  choice3: MyString
+  choice4: MyString
+  correct_choice: 
+  score: 
+
+two:
+  content: MyText
+  choice1: MyString
+  choice2: MyString
+  choice3: MyString
+  choice4: MyString
+  correct_choice: 
+  score: 
