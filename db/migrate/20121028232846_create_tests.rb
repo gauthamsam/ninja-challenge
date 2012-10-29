@@ -4,8 +4,8 @@ class CreateTests < ActiveRecord::Migration
       t.string :name
       t.datetime :start_date
       t.datetime :end_date
-      t.int :max_score
-      t.admin_id :integer
+      t.integer :max_score
+      t.integer :admin_id
 
       t.timestamps
     end

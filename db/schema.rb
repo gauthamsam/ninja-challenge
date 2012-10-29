@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121028051544) do
+ActiveRecord::Schema.define(:version => 20121028234420) do
+
+  create_table "admins", :force => true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
+    t.string   "password"
+    t.string   "mail_address"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -139,6 +149,18 @@ ActiveRecord::Schema.define(:version => 20121028051544) do
   add_index "responses", ["api_id"], :name => "uq_responses_api_id", :unique => true
   add_index "responses", ["survey_section_id"], :name => "index_responses_on_survey_section_id"
 
+  create_table "students", :force => true do |t|
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "perm_id"
+    t.string   "email"
+    t.string   "password"
+    t.string   "grade"
+    t.string   "mail_address"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "survey_sections", :force => true do |t|
     t.integer  "survey_id"
     t.string   "title"
@@ -174,6 +196,29 @@ ActiveRecord::Schema.define(:version => 20121028051544) do
 
   add_index "surveys", ["access_code", "survey_version"], :name => "surveys_access_code_version_idx", :unique => true
   add_index "surveys", ["api_id"], :name => "uq_surveys_api_id", :unique => true
+
+  create_table "test_questions", :force => true do |t|
+    t.integer  "test_id"
+    t.text     "content"
+    t.string   "choice1"
+    t.string   "choice2"
+    t.string   "choice3"
+    t.string   "choice4"
+    t.integer  "correct_choice"
+    t.integer  "score"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "tests", :force => true do |t|
+    t.string   "name"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "max_score"
+    t.integer  "admin_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "validation_conditions", :force => true do |t|
     t.integer  "validation_id"
