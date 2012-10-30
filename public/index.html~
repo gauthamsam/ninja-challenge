@@ -187,13 +187,6 @@
   </head>
   <body>
 
-   <h1>Agile Gems Test and Survey Portal </h1>
-   <img src="/home/konark/ninja-challenge/app/assets/images/rails.png" alt="Test Site" width="80" height="80"></p>
-   <p>To Create Test please click on the Admin Login, if you are a student please select the Student Login.</p>
-   <p>
-       <a href="admin">Admin Login</a>
-       <a href="student">Student Login</a>
-   </p>
-
+      
   </body>
 </html>
