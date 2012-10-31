@@ -2,6 +2,7 @@ require 'rubygems'
 require 'google_chart'
 
 class ChartController < ApplicationController
+  before_filter :authenticate_admin!
   def index
     GoogleChart::PieChart.new('320x200', "Things I Like To Eat", false) do |pc|
       pc.data "Broccoli", 30

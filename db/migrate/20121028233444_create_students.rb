@@ -4,8 +4,8 @@ class CreateStudents < ActiveRecord::Migration
       t.string :firstname
       t.string :lastname
       t.string :perm_id
-      t.string :email
-      t.string :password
+      #t.string :email
+      #t.string :password
       t.string :grade
       t.string :mail_address
 

@@ -27,7 +27,12 @@ gem 'surveyor'
 
 gem 'mysql2'
 
+# For Google charts
 gem 'gchartrb'
+
+# User Authentication
+gem 'devise'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
