@@ -1,4 +1,6 @@
-source 'https://rubygems.org'
+# source 'https://rubygems.org'
+
+source 'http://rubygems.org'
 
 gem 'rails', '3.2.8'
 
@@ -47,3 +49,11 @@ gem 'devise'
 
 # To use debugger
 # gem 'ruby-debug'
+
+
+# FOR THIS ERROR 
+# Could not find a JavaScript runtime. See https://github.com/sstephenson/execjs for a li# st of available runtimes.
+#
+gem 'execjs'
+
+gem 'therubyracer'
