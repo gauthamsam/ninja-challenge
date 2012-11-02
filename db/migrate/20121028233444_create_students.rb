@@ -6,7 +6,7 @@ class CreateStudents < ActiveRecord::Migration
       t.string :perm_id
       #t.string :email
       #t.string :password
-      t.string :grade
+      t.string :level
       t.string :mail_address
 
       t.timestamps

@@ -4,4 +4,9 @@ class HomeController < ApplicationController
       format.html # index.html.erb
     end
   end
+    
+  def levels
+    @levels = Level.all
+    render 'students/registrations/new'
+  end
 end

@@ -1,7 +1,22 @@
 NinjaChallenge::Application.routes.draw do
   devise_for :admins
 
-  devise_for :students
+  devise_for :students do
+    get 'students/sign_out'  => 'devise/sessions#destroy', :as => :destroy_student_session
+    get 'students/sign_up' => 'registrations#new', :as => :students_sign_up_url
+    post 'students' => 'registrations#create'
+    match 'student' => 'students#index', :as => :student_root
+  end
+
+  devise_for :admins do
+    get 'admins/sign_out'  => 'devise/sessions#destroy', :as => :destroy_admin_session
+    get 'admins/sign_up' => 'registrations#new', :as => :admins_sign_up_url
+    post 'admins' => 'registrations#create'
+    match 'admin' => 'admins#index', :as => :admin_root
+  end
+  
+
+  devise_for :students, :controllers => {:registrations => "registrations"}
 
   resources :students
 
@@ -9,7 +24,10 @@ NinjaChallenge::Application.routes.draw do
 
   resources :tests
 
+  
   get "home/index"
+
+  get "home/levels"
 
   get "chart/index"
 
@@ -70,4 +88,5 @@ NinjaChallenge::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   root :to => "home#index"
+    
 end

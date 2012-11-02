@@ -1,0 +1,40 @@
+<div style="margin-bottom: 20px">
+<h4>Please enter your registration details</h4>
+</div>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :firstname %>
+    <%= f.text_field :firstname %>
+  </div>
+  <div class="field">
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname %>
+  </div>
+  <div class="field">
+    <%= f.label :perm_id %>
+    <%= f.text_field :perm_id %>
+  </div>
+  <div class="field">
+    <%= f.label :level %>
+    <%= f.select :level, options_for_select(@levels.collect { |level| [level.name, level.id] }, :level), :class => 'genForm_dropBox' %>
+  </div>
+  <div class="field">
+    <%= f.label :mail_address %>
+    <%= f.text_field :mail_address %>
+  </div>
+
+  <div><%= f.label :email %>
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password %>
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %></div>
+
+
+  <div><%= f.submit "Sign up", :class => 'btn btn-primary' %></div>
+<% end %>

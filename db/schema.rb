@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030234836) do
+ActiveRecord::Schema.define(:version => 20121031010336) do
 
   create_table "admins", :force => true do |t|
     t.string   "firstname"
@@ -81,6 +81,12 @@ ActiveRecord::Schema.define(:version => 20121030234836) do
     t.string   "response_other"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "levels", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "question_groups", :force => true do |t|
@@ -164,7 +170,7 @@ ActiveRecord::Schema.define(:version => 20121030234836) do
     t.string   "firstname"
     t.string   "lastname"
     t.string   "perm_id"
-    t.string   "grade"
+    t.string   "level"
     t.string   "mail_address"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
