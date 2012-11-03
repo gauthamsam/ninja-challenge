@@ -1,7 +1,8 @@
-<div style="margin-bottom: 20px">
-<h4>Please enter your registration details</h4>
+<div style="margin-bottom: 20px; margin-top: -25px">
+<h3>Hi Student!</h3>	
+<h4>Please enter your registration details.</h4>
 </div>
-
+<%= registration_path(resource_name)%>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -36,5 +37,5 @@
   <%= f.password_field :password_confirmation %></div>
 
 
-  <div><%= f.submit "Sign up", :class => 'btn btn-primary' %></div>
+  <div style="margin-top: 20px"><%= f.submit "Sign up", :class => 'btn btn-primary' %></div>
 <% end %>

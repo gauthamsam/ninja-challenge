@@ -1,31 +1,51 @@
-<h1>Listing admins</h1>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span3">
+			<div class="well sidebar-nav">
+				<ul class="nav nav-list">
+					<li class="nav-header">
+						Test
+					</li>
+					<li>
+						<a href="/admins/create_test">Create Test</a>
+					</li>
+					<li>
+						<a href="#">Edit Test</a>
+					</li>
+					<li class="nav-header">
+						Reports
+					</li>
+					<li>
+						<a href="#">View Reports</a>
+					</li>
+					<li>
+						<a href="#">Download Reports</a>
+					</li>
+					<li class="nav-header">
+						Survey
+					</li>
+					<li>
+						<a href="#">Create Survey</a>
+					</li>
+					<li class="active">
+						<a href="#">View Survey</a>
+					</li>
+				</ul>
+			</div><!--/.well -->
+		</div><!--/span-->
+		<div class="span9">
+			<div class="hero-unit">
+				<h1>Hello, world!</h1>
+				<p>
+					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large">Learn more &raquo;</a>
+				</p>
+			</div>
+		</div><!--/span-->
+	</div><!--/row-->
 
-<table>
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Email</th>
-    <th>Password</th>
-    <th>Mail address</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+	<hr>
 
-<% @admins.each do |admin| %>
-  <tr>
-    <td><%= admin.firstname %></td>
-    <td><%= admin.lastname %></td>
-    <td><%= admin.email %></td>
-    <td><%= admin.password %></td>
-    <td><%= admin.mail_address %></td>
-    <td><%= link_to 'Show', admin %></td>
-    <td><%= link_to 'Edit', edit_admin_path(admin) %></td>
-    <td><%= link_to 'Destroy', admin, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Admin', new_admin_path %>
+</div><!--/.fluid-container-->

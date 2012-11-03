@@ -81,4 +81,8 @@ class AdminsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def create_test
+    
+  end
 end

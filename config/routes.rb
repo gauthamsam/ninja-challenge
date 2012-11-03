@@ -15,7 +15,7 @@ NinjaChallenge::Application.routes.draw do
     match 'admin' => 'admins#index', :as => :admin_root
   end
   
-
+  # Overriding devise controller - Done to load all the levels before showing up the registration page.
   devise_for :students, :controllers => {:registrations => "registrations"}
 
   resources :students

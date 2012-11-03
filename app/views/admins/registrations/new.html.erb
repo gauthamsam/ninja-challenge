@@ -1,32 +1,33 @@
-<h2>Sign up</h2>
+<div style="margin-bottom: 20px; margin-top: -25px">
+<h3>Hi Admin!</h3>	
+<h4>Please enter your registration details.</h4>
+</div>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :firstname %><br />
+    <%= f.label :firstname %>
     <%= f.text_field :firstname %>
   </div>
   <div class="field">
-    <%= f.label :lastname %><br />
+    <%= f.label :lastname %>
     <%= f.text_field :lastname %>
   </div>
   
-  <div><%= f.label :email %><br />
+  <div><%= f.label :email %>
   <%= f.email_field :email %></div>
 
-  <div><%= f.label :password %><br />
+  <div><%= f.label :password %>
   <%= f.password_field :password %></div>
 
-  <div><%= f.label :password_confirmation %><br />
+  <div><%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %></div>
   
   <div class="field">
-    <%= f.label :mail_address %><br />
+    <%= f.label :mail_address %>
     <%= f.text_field :mail_address %>
   </div>
 
-  <div><%= f.submit "Sign up" %></div>
+  <div style="margin-top: 20px"><%= f.submit "Sign up", :class => 'btn btn-primary' %></div>
 <% end %>
-
-<%= render "devise/shared/links" %>
