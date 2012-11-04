@@ -170,24 +170,11 @@ ActiveRecord::Schema.define(:version => 20121031010336) do
     t.string   "firstname"
     t.string   "lastname"
     t.string   "perm_id"
-    t.string   "level"
+    t.integer  "level_id"
     t.string   "mail_address"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
-
-  add_index "students", ["email"], :name => "index_students_on_email", :unique => true
-  add_index "students", ["reset_password_token"], :name => "index_students_on_reset_password_token", :unique => true
 
   create_table "survey_sections", :force => true do |t|
     t.integer  "survey_id"
@@ -244,6 +231,7 @@ ActiveRecord::Schema.define(:version => 20121031010336) do
     t.datetime "end_date"
     t.integer  "max_score"
     t.integer  "admin_id"
+    t.integer  "level_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

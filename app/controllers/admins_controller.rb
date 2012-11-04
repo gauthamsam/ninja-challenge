@@ -81,8 +81,29 @@ class AdminsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def create_test
-    
+    @test = Test.new
+    @levels = Level.all
+    @partials_path = String.new('admins/test/new')
+
+    respond_to do |format|
+      format.html { redirect_to admins_url }
+      format.json { head :no_content }
+    end
+
   end
+
+  def add_test
+    @test = Test.new(params[:test])
+    @partials_path = String.new('admins/test/view')
+    
+    if @test.save
+      flash[:notice] = 'Test was successfully created.'      
+    else
+      flash[:error] = 'Test could not be created.'      
+    end
+    redirect_to( admins_url )
+  end
+  
 end

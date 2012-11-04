@@ -35,6 +35,11 @@ gem 'gchartrb'
 # User Authentication
 gem 'devise'
 
+# Date picker
+#gem 'calendar_date_select', :git => 'http://github.com/paneq/calendar_date_select.git' 
+#gem 'bootstrap-datepicker-rails'
+
+gem 'jquery_datepicker'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -7,5 +7,5 @@ class Student < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :firstname, :level, :lastname, :mail_address, :perm_id
+  attr_accessible :firstname, :level_id, :lastname, :mail_address, :perm_id
 end

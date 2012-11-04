@@ -6,12 +6,12 @@
 					<li class="nav-header">
 						Test
 					</li>
+					<li class="active">
+						<a href="#">View Tests</a>
+					</li>
 					<li>
 						<a href="/admins/create_test">Create Test</a>
-					</li>
-					<li>
-						<a href="#">Edit Test</a>
-					</li>
+					</li>					
 					<li class="nav-header">
 						Reports
 					</li>
@@ -27,21 +27,19 @@
 					<li>
 						<a href="#">Create Survey</a>
 					</li>
-					<li class="active">
+					<li>
 						<a href="#">View Survey</a>
 					</li>
 				</ul>
 			</div><!--/.well -->
 		</div><!--/span-->
 		<div class="span9">
-			<div class="hero-unit">
-				<h1>Hello, world!</h1>
-				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-				</p>
-				<p>
-					<a class="btn btn-primary btn-large">Learn more &raquo;</a>
-				</p>
+			<div class="hero-unit">				
+				<% if @partials_path.nil? %>
+					Please do some action.
+				<% else %>
+					<%= render @partials_path%>
+				<% end %>
 			</div>
 		</div><!--/span-->
 	</div><!--/row-->

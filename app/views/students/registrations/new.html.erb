@@ -19,8 +19,8 @@
     <%= f.text_field :perm_id %>
   </div>
   <div class="field">
-    <%= f.label :level %>
-    <%= f.select :level, options_for_select(@levels.collect { |level| [level.name, level.id] }, :level), :class => 'genForm_dropBox' %>
+    <%= f.label :level_id %>
+    <%= f.select :level_id, options_for_select(@levels.collect { |level| [level.name, level.id] }, :level), :class => 'genForm_dropBox' %>
   </div>
   <div class="field">
     <%= f.label :mail_address %>

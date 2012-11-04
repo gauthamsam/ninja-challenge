@@ -1,5 +1,7 @@
 NinjaChallenge::Application.routes.draw do
-  devise_for :admins
+  get 'admins/create_test' => 'admins#create_test'
+
+  post 'admins/add_test' => 'admins#add_test'
 
   devise_for :students do
     get 'students/sign_out'  => 'devise/sessions#destroy', :as => :destroy_student_session

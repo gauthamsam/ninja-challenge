@@ -6,6 +6,7 @@ class CreateTests < ActiveRecord::Migration
       t.datetime :end_date
       t.integer :max_score
       t.integer :admin_id
+      t.integer :level_id
 
       t.timestamps
     end
