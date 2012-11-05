@@ -1,5 +1,6 @@
 NinjaChallenge::Application.routes.draw do
   get 'admins/create_test' => 'admins#create_test'
+  get 'admins/view_tests' => 'admins#view_tests'
 
   post 'admins/add_test' => 'admins#add_test'
 

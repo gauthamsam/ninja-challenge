@@ -85,10 +85,10 @@ class AdminsController < ApplicationController
   def create_test
     @test = Test.new
     @levels = Level.all
-    @partials_path = String.new('admins/test/new')
+    @partials = 'admins/tests/new'
 
     respond_to do |format|
-      format.html { redirect_to admins_url }
+      format.html { render :template => 'admins/index' }
       format.json { head :no_content }
     end
 
@@ -96,14 +96,28 @@ class AdminsController < ApplicationController
 
   def add_test
     @test = Test.new(params[:test])
-    @partials_path = String.new('admins/test/view')
-    
+    @partials = 'admins/tests/view'
+
     if @test.save
-      flash[:notice] = 'Test was successfully created.'      
+      @tests = Test.all
+      flash[:notice] = 'Test was successfully created.'
     else
-      flash[:error] = 'Test could not be created.'      
+      flash[:error] = 'Test could not be created.'
     end
-    redirect_to( admins_url )
+
+    respond_to do |format|
+      format.html { render :template => 'admins/index' }
+      format.json { head :no_content }
+    end
   end
-  
+
+  def view_tests
+    @tests = Test.all
+    @partials = 'admins/tests/view'
+    respond_to do |format|
+      format.html { render :template => 'admins/index' }
+      format.json { head :no_content }
+    end
+  end
+
 end

@@ -7,7 +7,7 @@
 						Test
 					</li>
 					<li class="active">
-						<a href="#">View Tests</a>
+						<a href="/admins/view_tests">View Tests</a>
 					</li>
 					<li>
 						<a href="/admins/create_test">Create Test</a>
@@ -35,10 +35,10 @@
 		</div><!--/span-->
 		<div class="span9">
 			<div class="hero-unit">				
-				<% if @partials_path.nil? %>
+				<% if @partials.nil? %>
 					There are no tests to view. Please create one.
 				<% else %>
-					<%= render @partials_path%>
+					<%= render :partial => @partials%>
 				<% end %>
 			</div>
 		</div><!--/span-->
