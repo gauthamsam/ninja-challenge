@@ -6,7 +6,7 @@
 					<li class="nav-header">
 						Test
 					</li>
-					<li class="active">
+					<li>
 						<a href="/admins/view_tests">View Tests</a>
 					</li>
 					<li>
@@ -35,8 +35,8 @@
 		</div><!--/span-->
 		<div class="span9">
 			<div class="hero-unit">				
-				<% if @partials_path.nil? %>
-					There are no tests to view. Please create one by clicking on 'Create Test'.
+				<% if @partials.nil? %>
+					Welcome! Please select one of the options to get started. 
 				<% else %>
 					<%= render :partial => @partials%>
 				<% end %>
