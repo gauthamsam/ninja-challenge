@@ -2,8 +2,13 @@ NinjaChallenge::Application.routes.draw do
   get 'admins/create_test' => 'admins#create_test'
   get 'admins/view_tests' => 'admins#view_tests'
   get 'admins/view_survey' => 'admins#view_survey'
+  get 'admins/show_question' => 'admins#show_question'
+  get 'admins/view_all_questions' => 'admins#view_all_questions'
+  post 'admins/save_question' => 'admins#save_question'
+
 
   post 'admins/add_test' => 'admins#add_test'
+  get 'students/view_tests' => 'students#view_tests'
 
   devise_for :students do
     get 'students/sign_out'  => 'devise/sessions#destroy', :as => :destroy_student_session

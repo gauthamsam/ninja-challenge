@@ -1,0 +1,27 @@
+<% if @questions.size > 0 %>
+<div style="margin-bottom: 0px; margin-top: -45px">
+<h4>Questions for <%=@test.name%></h4>
+</div>
+<% @questions.each do |question| %>
+<div class="question">
+	<div class="question_content">
+		Question: <%=question.content%>
+	</div>
+	<div class="question_choice">
+		<input type="radio" name="group1" value="1">&nbsp;<%=question.choice1%><br/>
+		<input type="radio" name="group1" value="2">&nbsp;<%=question.choice2%><br/>
+		<input type="radio" name="group1" value="3">&nbsp;<%=question.choice3%><br/>
+		<input type="radio" name="group1" value="4">&nbsp;<%=question.choice4%><br/>		
+		<div>
+			Answer Choice: <%= question.correct_choice + 1%>
+		</div>
+		<div>
+			Score: <%= question.score%>
+		</div>
+	</div>
+</div>
+<hr />
+<% end %>
+<% else %>
+<p>There are no questions for this test.</p>
+<% end %>

@@ -1,0 +1,45 @@
+<div style="margin-bottom: 0px; margin-top: -45px">
+	<p class="notice">
+		<%= notice %>
+	</p>
+	
+	
+	<%= form_for(@question, :url => { :controller => "admins", :action => "save_question" }) do |f| %>
+	<div>
+		Question
+	</div>
+	<div class="field">
+		<%= f.label :content %>
+		<%= f.text_field :content %>
+	</div>
+	<!-- <textarea name = "content" rows="4" cols="50"> </textarea> -->
+	<div class="field">
+		<%= f.label :choice1 %>
+		<%= f.text_field :choice1 %>
+	</div>
+	<div class="field">
+		<%= f.label :choice2 %>
+		<%= f.text_field :choice2 %>
+	</div>
+	<div class="field">
+		<%= f.label :choice3 %>
+		<%= f.text_field :choice3 %>
+	</div>
+	<div class="field">
+		<%= f.label :choice4 %>
+		<%= f.text_field :choice4 %>
+	</div>
+
+	<div class="field">
+		<%= f.label :correct_choice %>
+		<%= f.select :correct_choice, options_for_select(["Choice 1", "Choice 2", "Choice 3", "Choice 4"]), :class => 'genForm_dropBox' %>
+	</div>
+	<div class="field">
+		<%= f.label :score %>
+		<%= f.text_field :score %>
+	</div>
+	<%= f.hidden_field :test_id  %>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+	<% end %>

@@ -1,33 +1,37 @@
-<h1>Listing students</h1>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span3">
+			<div class="well sidebar-nav">
+				<ul class="nav nav-list">
+					<li class="nav-header">
+						Test
+					</li>
+					<li>
+						<a href="/students/view_tests">View Tests</a>
+					</li>					
+					<li class="nav-header">
+						Reports
+					</li>
+					<li>
+						<a href="#">View Reports</a>
+					</li>
+					<li>
+						<a href="#">Download Reports</a>
+					</li>
+				</ul>
+			</div><!--/.well -->
+		</div><!--/span-->
+		<div class="span9">
+			<div class="hero-unit">				
+				<% if @partials.nil? %>
+					Welcome! Please select one of the options to get started. 
+				<% else %>
+					<%= render :partial => @partials%>
+				<% end %>
+			</div>
+		</div><!--/span-->
+	</div><!--/row-->
 
-<table>
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th>
-    <th>Perm</th>
-    <th>Email</th>
-    <th>Password</th>
-    <th>Mail address</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+	<hr>
 
-<% @students.each do |student| %>
-  <tr>
-    <td><%= student.firstname %></td>
-    <td><%= student.lastname %></td>
-    <td><%= student.perm_id %></td>
-    <td><%= student.email %></td>
-    <td><%= student.password %></td>
-    <td><%= student.mail_address %></td>
-    <td><%= link_to 'Show', student %></td>
-    <td><%= link_to 'Edit', edit_student_path(student) %></td>
-    <td><%= link_to 'Destroy', student, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Student', new_student_path %>
+</div><!--/.fluid-container-->

@@ -116,6 +116,50 @@ class AdminsController < ApplicationController
     end
   end
 
+  def show_question
+    test_id = params[:test_id]
+    @question = TestQuestion.new(:test_id => test_id)
+    
+    @partials = 'admins/tests/questions'
+
+    respond_to do |format|
+      format.html { render :template => 'admins/index' }
+      format.json { head :no_content }
+    end
+  end
+  
+  def view_all_questions
+    test_id = params[:test_id]
+    @questions = TestQuestion.where(:test_id => test_id)
+    
+    @test = Test.find(test_id)
+    @partials = 'admins/tests/view_questions'
+
+    respond_to do |format|
+      format.html { render :template => 'admins/index' }
+      format.json { head :no_content }
+    end
+  end
+
+  def save_question
+    @question = TestQuestion.new(params[:test_question])
+    # correct_choice starts with 0
+    @question.correct_choice = @question.correct_choice + 1
+    @partials = 'admins/tests/view'
+    
+    if @question.save      
+      flash[:notice] = 'Question was successfully saved.'
+    else
+      flash[:error] = 'Question could not be saved.'
+    end
+
+    @tests = Test.all
+    respond_to do |format|
+      format.html { render :template => 'admins/index' }
+      format.json { head :no_content }
+    end
+  end
+
   def view_tests
     @tests = Test.all
     @partials = 'admins/tests/view'
@@ -148,5 +192,5 @@ class AdminsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
 end

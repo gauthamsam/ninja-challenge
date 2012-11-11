@@ -82,4 +82,14 @@ class StudentsController < ApplicationController
     end
   end
   
+  # Get all the tests that this student can take
+  def view_tests
+    @tests = Test.where(:level_id => current_student.level_id) 
+    @partials = 'students/tests/view'
+    respond_to do |format|
+      format.html { render :template => 'students/index' }
+      format.json { head :no_content }
+    end
+  end
+  
 end

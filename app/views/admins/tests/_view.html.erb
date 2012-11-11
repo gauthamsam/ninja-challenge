@@ -10,17 +10,20 @@
     <th width="200px">End Date</th>
     <th width="200px">Max Score</th>
     <th width="200px">Level</th>
+    <th width="200px"></th>
     <th width="100px"></th>
     <th width="100px"></th>    
   </tr>
 
 <% @tests.each do |test| %>
-  <tr>	
+  <tr>
     <td width="200px"><%= test.name %></td>
     <td width="200px"><%= test.start_date %></td>
     <td width="200px"><%= test.end_date %></td>
     <td width="200px"><%= test.max_score %></td>
     <td width="200px"><%= test.level_id %></td>
+    <td width="200px"><a href="/admins/show_question?test_id=<%=test.id%>">Add Questions</a></td>
+    <td width="200px"><a href="/admins/view_all_questions?test_id=<%=test.id%>">Preview Questions</a></td>
     <td width="100px"><%= link_to 'Edit', '' %></td>
     <td width="100px"><%= link_to 'Delete', test, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
   </tr>
