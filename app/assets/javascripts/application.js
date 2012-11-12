@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require_tree .
 //= require jquery-ui
+//= require bootstrap-datepicker
+
+$("[data-behaviour~='datepicker']").datepicker({
+    "format": "yyyy-mm-dd",
+    "weekStart": 1,
+    "autoclose": true
+});

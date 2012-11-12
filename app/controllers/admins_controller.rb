@@ -169,6 +169,15 @@ class AdminsController < ApplicationController
     end
   end
 
+  def view_reports
+    @tests = Test.all
+    @partials = 'admins/tests/view_reports'
+    respond_to do |format|
+      format.html { render :template => 'admins/index' }
+      format.json { head :no_content }
+    end
+  end
+
   def view_survey
     bar_1_data = [3,1,7, 10, 5]
     #bar_2_data = [200,800,50]
