@@ -1,8 +1,9 @@
 <% if @tests.size > 0 %>
-<div style="margin-bottom: 0px; margin-top: -45px">
-<h4>Tests created:</h4>
+<div style="margin-bottom: 0px; margin-top: -45px"> 
+<div style="float: left"><h4>Tests created:</h4></div>
+<div style="float: right"><%= paginate @tests %></div>
+<div style="clear: both"></div>
 </div>
-
 <table border="1">
   <tr>
     <th width="200px">Test Name</th>
@@ -12,7 +13,7 @@
     <th width="200px">Level</th>
     <th width="200px"></th>
     <th width="100px"></th>
-    <th width="100px"></th>    
+    <th width="100px"></th>
   </tr>
 
 <% @tests.each do |test| %>
@@ -29,6 +30,8 @@
   </tr>
 <% end %>
 </table>
+<div style="float: right;"><%= paginate @tests %></div>
+<div style="clear: both"></div>
 <% else %>
 <p>There are no tests to view. You may create one by clicking 'Create Test'.</p>
 <% end %>

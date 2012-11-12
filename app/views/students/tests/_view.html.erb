@@ -1,6 +1,9 @@
 <% if @tests.size > 0 %>
+<%= paginate @tests %>
 <div style="margin-bottom: 0px; margin-top: -45px">
-<h4>Tests:</h4>
+<div style="float: left"><h4>Tests:</h4></div>
+<div style="float: right"><%= paginate @tests %></div>
+<div style="clear: both"></div>
 </div>
 
 <table border="1">
@@ -24,6 +27,8 @@
   </tr>
 <% end %>
 </table>
+<div style="float: right;"><%= paginate @tests %></div>
+<div style="clear: both"></div>
 <% else %>
 <p>There are no tests for your level.</p>
 <% end %>
