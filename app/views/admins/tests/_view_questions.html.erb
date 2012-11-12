@@ -3,10 +3,11 @@
 <h4>Questions for <%=@test.name%></h4>
 </div>
 
-<a href="/admins/show_question?test_id=<%=@test.id%>">Add Questions</a>
+<b><a href="/admins/show_question?test_id=<%=@test.id%>">Add More Questions To This Test</a></b>
 <br/>
 <% @questions.each do |question| %>
-<div class="question">
+
+<div class="question" style="color:#0000FF">
 	<div class="question_content">
 		Question: <%=question.content%>
 	</div>
