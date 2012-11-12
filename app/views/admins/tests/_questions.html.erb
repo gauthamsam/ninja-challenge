@@ -9,7 +9,7 @@
 	<hr/>
 	<div class="field">		
 		<%= f.label "Question text" %>
-		<%= f.text_area :content, "cols" => 40, "rows" => 4 %>
+		<%= f.text_area :content, "cols" => 40, "rows" => 3 %>
 	</div>
 	<!-- <textarea name = "content" rows="4" cols="50"> </textarea> -->
 	<div class="field">
@@ -39,6 +39,6 @@
 	</div>
 	<%= f.hidden_field :test_id  %>
 	<div class="actions">
-		<%= f.submit %>
+		<%= f.submit 'Add Question', :class => 'btn btn-primary'%>
 	</div>
 	<% end %>

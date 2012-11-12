@@ -4,13 +4,15 @@
 <%= form_tag("/students/submit_test") do %>
 <div style="float: left; padding-left: 500px"><h4><%=@test.name%></h4></div> 
 <div style="float: right">Time remaining: 01:00:00</div>
+<br/>
+<div style="float: right;"><%= paginate @questions %></div>
 <div style="clear: both"></div>
 <hr/>
 
 <% @questions.each_with_index do |question, question_number| %>
 <div class="question">
 	<div class="question_content" style="float: left; font-weight: bold">
-		<%= question_number + 1%>.&nbsp; <%=question.content%>
+		<%= @questions.default_per_page * (@questions.current_page - 1) + question_number + 1%>.&nbsp; <%=question.content%>
 	</div>
 	<div style="float: right">
 		Score: <%=question.score%>
@@ -25,10 +27,13 @@
 </div>
 <hr/>
 <% end %>
+<div style="float: right;"><%= paginate @questions %></div>
+<div style="clear: both"></div>
 <input type="hidden" name="test_id" value="<%=@test.id%>">
 <div align="center">
+<% if @questions.last_page?%>	
 <%= submit_tag "Submit Test", :class => 'btn btn-primary'%>
-
+<%end%>
 </div>
 <% end %>
 <!-- It should never go the else part. The teachers are expected to have created the questions before the test start date. -->

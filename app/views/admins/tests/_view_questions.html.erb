@@ -1,6 +1,10 @@
 <% if @questions.size > 0 %>
-<div style="margin-bottom: 0px; margin-top: -45px">
-<h4>Questions for <%=@test.name%></h4>
+<div style="margin-top: -45px">
+<div style="float: left"><h4>Questions for <%=@test.name%></h4>
+	(<a href="/admins/show_question?test_id=<%=@test.id%>">Add Questions</a>)
+</div>
+<div style="float: right"><%= paginate @questions %></div>
+<div style="clear: both"></div>
 </div>
 
 <b><a href="/admins/show_question?test_id=<%=@test.id%>">Add More Questions To This Test</a></b>
@@ -10,22 +14,30 @@
 <div class="question" style="color:#0000FF">
 	<div class="question_content">
 		Question: <%=question.content%>
+
+<br/>
+<% @questions.each_with_index do |question, question_number| %>
+<div class="question">
+	<div class="question_content" style="font-weight: bold">
+		<%= @questions.default_per_page * (@questions.current_page - 1) + question_number + 1%>.&nbsp; <%=question.content%>		
 	</div>
 	<div class="question_choice">
 		<input type="radio" name="group1" value="1">&nbsp;<%=question.choice1%><br/>
 		<input type="radio" name="group1" value="2">&nbsp;<%=question.choice2%><br/>
 		<input type="radio" name="group1" value="3">&nbsp;<%=question.choice3%><br/>
 		<input type="radio" name="group1" value="4">&nbsp;<%=question.choice4%><br/>		
-		<div>
+		<div style="font-weight: bold; padding-left: 5px">
 			Answer Choice: <%= question.correct_choice%>
 		</div>
-		<div>
+		<div style="font-weight: bold; padding-left: 5px" >
 			Score: <%= question.score%>
 		</div>
 	</div>
 </div>
 <hr />
 <% end %>
+<div style="float: right;"><%= paginate @questions %></div>
+<div style="clear: both"></div>
 <% else %>
 <p>There are no questions for this test.</p>
 <% end %>

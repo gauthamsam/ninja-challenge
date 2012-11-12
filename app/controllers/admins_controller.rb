@@ -130,7 +130,8 @@ class AdminsController < ApplicationController
   
   def view_all_questions
     test_id = params[:test_id]
-    @questions = TestQuestion.where(:test_id => test_id)
+    questions_array = TestQuestion.where(:test_id => test_id)
+    @questions = Kaminari.paginate_array(questions_array).page(params[:page])
     
     @test = Test.find(test_id)
     @partials = 'admins/tests/view_questions'
@@ -143,10 +144,6 @@ class AdminsController < ApplicationController
 
   def save_question
     @question = TestQuestion.new(params[:test_question])
-    # correct_choice starts with 0
-    @question.correct_choice = @question.correct_choice
-    puts "***@question.correct_choice*** " + @question.correct_choice.to_s
-    
     @partials = 'admins/tests/view'
     
     if @question.save      
@@ -155,16 +152,17 @@ class AdminsController < ApplicationController
       flash[:error] = 'Question could not be saved.'
     end
 
-    @tests = Test.all
     respond_to do |format|
-      format.html { render :template => 'admins/index' }
+      format.html { redirect_to '/admins/view_tests' }
       format.json { head :no_content }
     end
   end
 
   def view_tests
-    @tests = Test.all
+    tests_array = Test.all
+    @tests = Kaminari.paginate_array(tests_array).page(params[:page])
     @partials = 'admins/tests/view'
+    
     respond_to do |format|
       format.html { render :template => 'admins/index' }
       format.json { head :no_content }

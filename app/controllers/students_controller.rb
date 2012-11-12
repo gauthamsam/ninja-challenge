@@ -84,7 +84,8 @@ class StudentsController < ApplicationController
   
   # Get all the tests that this student can take
   def view_tests
-    @tests = Test.where(:level_id => current_student.level_id)
+    tests_array = Test.where(:level_id => current_student.level_id)
+    @tests = Kaminari.paginate_array(tests_array).page(params[:page])
     @partials = 'students/tests/view'
     respond_to do |format|
       format.html { render :template => 'students/index' }
@@ -98,9 +99,10 @@ class StudentsController < ApplicationController
     @student_test = StudentTest.where(:student_id => current_student.id, :test_id => test_id.to_i, :submitted => true)
     
     # If the student has already submitted the test, he should go to the reports page.
-    template_file = @student_test ? 'students/tests/reports' : 'students/tests/take_test'
+    template_file = @student_test.exists? ? 'students/tests/reports' : 'students/tests/take_test'
     
-    @questions = TestQuestion.where(:test_id => test_id)
+    questions_array = TestQuestion.where(:test_id => test_id)
+    @questions = Kaminari.paginate_array(questions_array).page(params[:page])
     
     respond_to do |format|
       format.html { render :template => template_file }
