@@ -1,16 +1,15 @@
-<div style="margin-bottom: 0px; margin-top: -45px">
+<div style="margin-bottom: 0px; margin-top: -45px"></div>
 	<p class="notice">
 		<%= notice %>
 	</p>
-	
-	
 	<%= form_for(@question, :url => { :controller => "admins", :action => "save_question" }) do |f| %>
 	<div>
-		Question
+		<h4>Question</h4>
 	</div>
-	<div class="field">
-		<%= f.label :content %>
-		<%= f.text_field :content %>
+	<hr/>
+	<div class="field">		
+		<%= f.label "Question text" %>
+		<%= f.text_area :content, "cols" => 40, "rows" => 4 %>
 	</div>
 	<!-- <textarea name = "content" rows="4" cols="50"> </textarea> -->
 	<div class="field">
@@ -32,7 +31,7 @@
 
 	<div class="field">
 		<%= f.label :correct_choice %>
-		<%= f.select :correct_choice, options_for_select(["Choice 1", "Choice 2", "Choice 3", "Choice 4"]), :class => 'genForm_dropBox' %>
+		<%= f.select :correct_choice, options_for_select([["Choice 1", 1], ["Choice 2", 2], ["Choice 3", 3], ["Choice 4", 4]]), :class => 'genForm_dropBox' %>
 	</div>
 	<div class="field">
 		<%= f.label :score %>

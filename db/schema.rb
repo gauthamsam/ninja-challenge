@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121031010336) do
+ActiveRecord::Schema.define(:version => 20121111213951) do
 
   create_table "admins", :force => true do |t|
     t.string   "firstname"
@@ -165,6 +165,25 @@ ActiveRecord::Schema.define(:version => 20121031010336) do
 
   add_index "responses", ["api_id"], :name => "uq_responses_api_id", :unique => true
   add_index "responses", ["survey_section_id"], :name => "index_responses_on_survey_section_id"
+
+  create_table "student_test_questions", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "test_id"
+    t.integer  "question_id"
+    t.integer  "student_choice"
+    t.integer  "student_score"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "student_tests", :force => true do |t|
+    t.integer  "student_id"
+    t.integer  "test_id"
+    t.integer  "student_score"
+    t.boolean  "submitted"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
   create_table "students", :force => true do |t|
     t.string   "firstname"

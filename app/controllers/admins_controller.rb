@@ -144,7 +144,9 @@ class AdminsController < ApplicationController
   def save_question
     @question = TestQuestion.new(params[:test_question])
     # correct_choice starts with 0
-    @question.correct_choice = @question.correct_choice + 1
+    @question.correct_choice = @question.correct_choice
+    puts "***@question.correct_choice*** " + @question.correct_choice.to_s
+    
     @partials = 'admins/tests/view'
     
     if @question.save      

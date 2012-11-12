@@ -1,0 +1,37 @@
+<div style="margin-bottom: 0px; margin-top: -45px"></div>
+
+<% if @questions.size > 0 %>
+<%= form_tag("/students/submit_test") do %>
+<div style="float: left; padding-left: 500px"><h4><%=@test.name%></h4></div> 
+<div style="float: right">Time remaining: 01:00:00</div>
+<div style="clear: both"></div>
+<hr/>
+
+<% @questions.each_with_index do |question, question_number| %>
+<div class="question">
+	<div class="question_content" style="float: left; font-weight: bold">
+		<%= question_number + 1%>.&nbsp; <%=question.content%>
+	</div>
+	<div style="float: right">
+		Score: <%=question.score%>
+	</div>
+	<div style="clear: both"></div>
+	<div class="question_choice">
+		<input type="radio" name="<%= question.id%>" value="1">&nbsp;<%=question.choice1%><br/>
+		<input type="radio" name="<%= question.id%>" value="2">&nbsp;<%=question.choice2%><br/>
+		<input type="radio" name="<%= question.id%>" value="3">&nbsp;<%=question.choice3%><br/>
+		<input type="radio" name="<%= question.id%>" value="4">&nbsp;<%=question.choice4%><br/>
+	</div>
+</div>
+<hr/>
+<% end %>
+<input type="hidden" name="test_id" value="<%=@test.id%>">
+<div align="center">
+<%= submit_tag "Submit Test", :class => 'btn btn-primary'%>
+
+</div>
+<% end %>
+<!-- It should never go the else part. The teachers are expected to have created the questions before the test start date. -->
+<% else %>
+<p>Sorry, there are no questions for this test. Please come later.</p>
+<% end %>
