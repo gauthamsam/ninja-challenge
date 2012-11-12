@@ -2,6 +2,9 @@
 <div style="margin-bottom: 0px; margin-top: -45px">
 <h4>Questions for <%=@test.name%></h4>
 </div>
+
+<a href="/admins/show_question?test_id=<%=@test.id%>">Add Questions</a>
+<br/>
 <% @questions.each do |question| %>
 <div class="question">
 	<div class="question_content">
