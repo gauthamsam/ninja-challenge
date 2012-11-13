@@ -1,2 +1,66 @@
 <div style="margin-bottom: 0px; margin-top: -45px"></div>
 Reports Page
+
+<% if @questions.size > 0 %>
+
+<div style="float: right;"><%= paginate @questions %></div>
+<div style="clear: both"></div>
+<hr/>
+
+<% @questions.each_with_index do |question, question_number| %>
+<div class="question">
+	
+	<div class="question_content" style="float: left; font-weight: bold">
+		<%= @questions.default_per_page * (@questions.current_page - 1) + question_number + 1%>.&nbsp; <%=question.content%>
+	</div>
+	<div style="float: right">
+		Score: <%=question.score%>
+		<br>Your Score :
+	</div>
+	<div style="clear: both"></div>
+	<div class="question_choice">
+		<h5> Correct choice <%= question.correct_choice%> </h5>
+		<input type="radio" name="<%= question.id%>" value="1">&nbsp;<%=question.choice1%><br/>
+		<input type="radio" name="<%= question.id%>" value="2">&nbsp;<%=question.choice2%><br/>
+		<input type="radio" name="<%= question.id%>" value="3">&nbsp;<%=question.choice3%><br/>
+		<input type="radio" name="<%= question.id%>" value="4">&nbsp;<%=question.choice4%><br/>
+		
+	</div>
+</div>
+<hr/>
+<% end %>
+
+
+
+<% @questions.each_with_index do |question, question_number| %>
+<table id="reports">
+<tr>
+  <th>Id</th>
+  <th>Question </th>
+  <th>Score</th>
+  <th>Correct Choice</th>
+  <th>Your Choice</th>
+  <th>Your Score</th>
+</tr>
+<tr>
+ <td>1</td>
+ <td><%=question.content%></td>
+ <td><%=question.score%></td>
+ <td><%= question.correct_choice%></td>
+ <td>00</td>
+ <td>11</td>
+</tr>
+<% end %>
+
+<div style="float: right;"><%= paginate @questions %></div>
+<div style="clear: both"></div>
+<input type="hidden" name="test_id" value="<%=@test.id%>">
+<div align="center">
+<% if @questions.last_page?%>	
+
+</div>
+<% end %>
+<!-- It should never go the else part. The teachers are expected to have created the questions before the test start date. -->
+<% else %>
+<p>Sorry, there are no questions for this test. Please come later.</p>
+<% end %>
