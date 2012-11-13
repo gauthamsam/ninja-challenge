@@ -97,13 +97,25 @@ class StudentsController < ApplicationController
     test_id = params[:test_id]
     @test = Test.find(test_id)
     @student_test = StudentTest.where(:student_id => current_student.id, :test_id => test_id.to_i, :submitted => true)
-    
     # If the student has already submitted the test, he should go to the reports page.
-    template_file = @student_test.exists? ? 'students/tests/reports' : 'students/tests/take_test'
-    
+    template_file = @student_test.exists? ? 'students/tests/view_report' : 'students/tests/take_test'
     questions_array = TestQuestion.where(:test_id => test_id)
     @questions = Kaminari.paginate_array(questions_array).page(params[:page])
     
+    respond_to do |format|
+      format.html { render :template => template_file }
+      format.json { head :no_content }
+    end
+  end
+  
+  def view_report
+    test_id = params[:test_id]
+    @test = Test.find(test_id)    
+    @questions = TestQuestion.where(:test_id => test_id)
+    @student_test = StudentTest.where(:test_id => test_id, :student_id => current_student.id)
+    puts @student_test.first.student_score
+    @student_test_question = StudentTestQuestion.where(:test_id => test_id, :student_id => current_student.id)
+    template_file = 'students/tests/view_report' 
     respond_to do |format|
       format.html { render :template => template_file }
       format.json { head :no_content }
