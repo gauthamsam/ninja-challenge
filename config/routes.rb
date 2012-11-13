@@ -2,6 +2,7 @@ NinjaChallenge::Application.routes.draw do
   get 'admins/create_test' => 'admins#create_test'
   get 'admins/view_tests'  => 'admins#view_tests'
   get 'admins/view_reports' => 'admins#view_reports'
+   get 'admins/view_report' => 'admins#view_report'
   get 'admins/view_survey' => 'admins#view_survey'
   get 'admins/show_question' => 'admins#show_question'
   get 'admins/view_all_questions' => 'admins#view_all_questions'
@@ -13,7 +14,8 @@ NinjaChallenge::Application.routes.draw do
   
   get 'students/view_tests' => 'students#view_tests'
   get 'students/take_test' => 'students#take_test'
- 
+ get 'students/view_report' => 'students#view_report'
+
   post 'students/submit_test' => 'students#submit_test'
 
 

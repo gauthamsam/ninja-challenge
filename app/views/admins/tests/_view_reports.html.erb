@@ -1,21 +1,22 @@
 <% if @tests.size > 0 %>
 <div style="margin-bottom: 0px; margin-top: -45px">
-<h4>Tests created:</h4>
+	<h4>Tests created:</h4>
 </div>
 
 <table border="1">
-  <tr>
-    <th width="200px">Test Name</th>
-  </tr>
+	<tr>
+		<th width="200px">Test Name</th>
+	</tr>
 
-<% @tests.each do |test| %>
-  <tr>
-    <td width="200px"><%= test.name %></td>
-    <td width="100px"><%= link_to 'Show Report', '' %></td>
-    <!--td width="100px"><%= link_to 'Delete', test, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td-->
-  </tr>
-<% end %>
+	<% @tests.each do |test| %>
+	<tr>
+		<td width="200px"><%= test.name %></td>
+		<td width="200px"><a href="/admins/view_report?test_id=<%= test.id%>" target="_blank">View Report</td>
+	</tr>
+	<% end %>
 </table>
 <% else %>
-<p>There are no test reports to view. </p>
+<p>
+	There are no test reports to view.
+</p>
 <% end %>
