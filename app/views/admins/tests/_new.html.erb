@@ -1,10 +1,6 @@
 <div style="margin-top: -25px">
 <h4>Please enter the test details.</h4>
 </div>
-<script>
-	 $(function() {
-        $( "#datepicker" ).datepicker();
-    });
 
 </script>
 <%= form_for(@test, :url => { :controller => "admins", :action => "add_test" }) do |f| %>
@@ -22,11 +18,6 @@
   <div><%= f.label :start_date %>
   <%= f.text_field :start_date, :as => :date_picker %></div>
 
-
-	<div class="field">
-    	<input type="datetime">
-	</div>
-	
   <div><%= f.label :end_date %>
   <%= f.text_field :end_date %></div>
   

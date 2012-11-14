@@ -266,18 +266,18 @@ class AdminsController < ApplicationController
       i = i + 1
     end
      
-    color_1 = 'c53711'
+    color_1 = 'd53711'
     color_2 = '0000ff'
     
     GoogleChart::BarChart.new("700x300", "", :vertical, false) do |bc|
-      bc.data "FirstResultBar", bar_1_data, color_1
+      bc.data "Number of Students", bar_1_data, color_1
       #bc.data "SecondResultBar", bar_2_data, color_2
       bc.axis :y, :labels => stud_max
       bc.axis :x, :range => names_array
       #bc.show_legend = true
       #bc.stacked = true
       bc.data_encoding = :extended
-      bc.shape_marker :circle, :color => '0000ff', :data_set_index => 0, :data_point_index => -1, :pixel_size => 10
+      bc.shape_marker :circle, :data_set_index => 0, :data_point_index => -1, :pixel_size => 10
       @bar_chart = bc.to_url
     end
     

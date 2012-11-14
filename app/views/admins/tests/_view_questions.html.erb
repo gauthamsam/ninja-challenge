@@ -1,7 +1,6 @@
 <% if @questions.size > 0 %>
 <div style="margin-top: -45px">
 <div style="float: left"><h4>Questions for <%=@test.name%></h4>
-	(<a href="/admins/show_question?test_id=<%=@test.id%>">Add Questions</a>)
 </div>
 <div style="float: right"><%= paginate @questions %></div>
 <div style="clear: both"></div>
@@ -9,13 +8,7 @@
 
 <b><a href="/admins/show_question?test_id=<%=@test.id%>">Add More Questions To This Test</a></b>
 <br/>
-<% @questions.each do |question| %>
 
-<div class="question" style="color:#0000FF">
-	<div class="question_content">
-		Question: <%=question.content%>
-
-<br/>
 <% @questions.each_with_index do |question, question_number| %>
 <div class="question">
 	<div class="question_content" style="font-weight: bold">
@@ -38,6 +31,9 @@
 <% end %>
 <div style="float: right;"><%= paginate @questions %></div>
 <div style="clear: both"></div>
+
 <% else %>
 <p>There are no questions for this test.</p>
 <% end %>
+
+
