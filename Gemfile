@@ -65,6 +65,12 @@ gem 'therubyracer'
 
 #gem 'bootstrap-datepicker-rails', :require => 'bootstrap-datepicker-rails',:git => 'git://github.com/Nerian/bootstrap-datepicker-rails.git'
 
+# For pagination
 gem 'kaminari'
 
 # gem "highcharts-js-rails", "~> 0.1.10"
+
+
+gem 'jquery-datatables-rails'
+
+

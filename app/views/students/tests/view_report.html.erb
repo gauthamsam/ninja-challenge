@@ -1,46 +1,40 @@
 <style type="text/css">
-#reports
-{
-font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-width:100%;
-border-collapse:collapse;
-}
-#reports td, #reports th 
-{
-font-size:1em;
-border:1px solid #2E2E2E;
-padding:3px 7px 2px 7px;
-}
-#reports th 
-{
-font-size:1.1em;
-text-align:left;
-padding-top:5px;
-padding-bottom:4px;
-background-color:#000000;
-color:#ffffff;
-}
-#reports tr.alt td 
-{
-color:#000000;
-background-color:#F6D8CE;
-}
+	#reports {
+		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		width: 100%;
+		border-collapse: collapse;
+	}
+	#reports td, #reports th {
+		font-size: 1em;
+		border: 1px solid #2E2E2E;
+		padding: 3px 7px 2px 7px;
+	}
+	#reports th {
+		font-size: 1.1em;
+		text-align: left;
+		padding-top: 5px;
+		padding-bottom: 4px;
+		background-color: #777777;
+		color: #000000;
+	}
+	#reports tr.alt td {
+		color: #000000;
+		background-color: #F6D8CE;
+	}
 
 </style>
 <div style="margin-bottom: 0px; margin-top: -45px"></div>
-Reports Page
-
+Congratulations! You have submitted your test successfully!
 <% if @questions.size > 0 %>
 
 
 <div style="clear: both"></div>
 <hr/>
 
-<h3>Test : <%=@test.name%></h3>
+<h3>Report card for <%=@test.name%></h3>
 <h4>Total Score : <%= @student_test.first.student_score %></h4>
 <table id="reports">
 <tr>
-  <th>Id</th>
   <th>Question </th>
   <th>Score</th>
   <th>Correct Choice</th>
@@ -48,12 +42,10 @@ Reports Page
   <th>Your Score</th>
 </tr>
 
-
 <% @questions.each_with_index do |question, question_number| %>
 
 	<% if (@student_test_question.where(:question_id => question.id).first.student_score == 1) %>
 		<tr>
-		 <td><%= question.id%></td>
 		 <td><%= question.content%></td>
 		 <td><%= question.score%></td>
 		 <td><%= question.correct_choice%></td>
@@ -61,8 +53,7 @@ Reports Page
 		 <td><%= @student_test_question.where(:question_id => question.id).first.student_score %></td>
 		</tr>
 	<% else %>
-		<tr class="alt">
-		 <td><%= question.id%></td>
+		<tr class="alt">		 
 		 <td><%= question.content%></td>
 		 <td><%= question.score%></td>
 		 <td><%= question.correct_choice%></td>

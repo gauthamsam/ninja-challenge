@@ -1,35 +1,64 @@
+<style>
+	.nc_table {
+		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		width: 100%;
+		border-collapse: collapse;
+	}
+	.nc_table td, .nc_table th {
+		font-size: 1em;
+		border: 1px solid #2E2E2E;
+		padding: 3px 7px 2px 7px;
+		width: auto
+	}
+	.nc_table th {
+		font-size: 1.1em;
+		text-align: left;
+		padding-top: 5px;
+		padding-bottom: 4px;
+		background-color: #777777;
+		color: #000000;
+	}
+
+</style>
 <% if @tests.size > 0 %>
 <%= paginate @tests %>
 <div style="margin-bottom: 0px; margin-top: -45px">
-<div style="float: left"><h4>Tests:</h4></div>
-<div style="float: right"><%= paginate @tests %></div>
-<div style="clear: both"></div>
+	<div style="float: left">
+		<h4>Tests:</h4>
+	</div>
+	<div style="float: right">
+		<%= paginate @tests %>
+	</div>
+	<div style="clear: both"></div>
 </div>
 
-<table border="1">
-  <!--tr>
-    <th width="200px">Test Name</th>
-    <th width="200px">Start Date</th>
-    <th width="200px">End Date</th>
-    <th width="200px">Max Score</th>
-    <th width="200px">Level</th>
-    <th width="200px"></th>
-  </tr-->
+<table border="1" class="nc_table">
+	<tr>
+		<th width="300px">Test</th>
+		<th width="300px">Start Date</th>
+		<th width="300px">End Date</th>
+		<th width="300px">Max Score</th>
+		<th width="200px"></th>
+	</tr>
 
-<% @tests.each do |test| %>
-  <tr>	
-    <td width="200px"><%= test.name %></td>
-    <!--td width="200px"><%= test.start_date %></td>
-    <td width="200px"><%= test.end_date %></td>
-    <td width="200px"><%= test.max_score %></td>
-    <td width="200px"><%= test.level_id %></td-->
-    <td width="200px"><a href="/students/take_test?test_id=<%=test.id%>" target="_blank">Take test</td>
-    <td width="200px"><a href="/students/view_report?test_id=<%=test.id%>" target="_blank">View Report</td>
-  </tr>
-<% end %>
+	<% @tests.each do |test| %>
+	<tr>
+		<td width="300px"><%= test.name %></td>
+		<td width="300px"><%= test.start_date %></td>
+		<td width="300px"><%= test.end_date %></td>
+		<td width="300px"><%= test.max_score %></td>
+		<!--<td width="200px"><%= test.level_id %></td-->
+		<td width="200px"><a href="/students/take_test?test_id=<%= test.id%>" target="_blank">Take test</td>
+		<!-- <td width="200px"><a href="/students/view_report?test_id=<%=test.id%>" target="_blank">View Report</td> -->
+	</tr>
+	<% end %>
 </table>
-<div style="float: right;"><%= paginate @tests %></div>
+<div style="float: right;">
+	<%= paginate @tests %>
+</div>
 <div style="clear: both"></div>
 <% else %>
-<p>There are no tests for your level.</p>
+<p>
+	There are no tests for your level.
+</p>
 <% end %>
