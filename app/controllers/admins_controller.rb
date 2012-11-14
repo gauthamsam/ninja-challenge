@@ -104,7 +104,7 @@ class AdminsController < ApplicationController
     @test.admin_id = current_admin.id
 
     if @test.save
-      @tests = Test.all
+      @tests = Test.where(:admin_id => current_admin.id)
       flash[:notice] = 'Test was successfully created.'
     else
       flash[:error] = 'Test could not be created.'
@@ -157,7 +157,7 @@ class AdminsController < ApplicationController
   end
 
   def view_tests
-    tests_array = Test.all
+    tests_array = Test.where(:admin_id => current_admin.id)
     @tests = Kaminari.paginate_array(tests_array).page(params[:page])
     @partials = 'admins/tests/view'
     
@@ -172,7 +172,7 @@ class AdminsController < ApplicationController
 #
 
   def view_reports
-    @tests = Test.all
+    @tests = Test.where(:admin_id => current_admin.id)
     @partials = 'admins/tests/view_reports'
     respond_to do |format|
       format.html { render :template => 'admins/index' }

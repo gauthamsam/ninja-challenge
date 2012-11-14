@@ -1,20 +1,37 @@
+<style type="text/css">
+	.nc_table {
+		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		width: 100%;
+		border-collapse: collapse;
+	}
+	.nc_table td, .nc_table th {
+		font-size: 1em;
+		border: 1px solid #2E2E2E;
+		padding: 3px 7px 2px 7px;
+		width: auto
+	}
+	.nc_table th {
+		font-size: 1.1em;
+		text-align: left;
+		padding-top: 5px;
+		padding-bottom: 4px;
+		background-color: #777777;
+		color: #000000;
+	}
+
+</style>
 <% if @tests.size > 0 %>
 <div style="margin-bottom: 0px; margin-top: -45px">
-	<h4>Tests created:</h4>
+	<h4>View reports for:</h4>
 </div>
 
-<table border="1">
-	<tr>
-		<th width="200px">Test Name</th>
-	</tr>
-
-	<% @tests.each do |test| %>
-	<tr>
-		<td width="200px"><%= test.name %></td>
-		<td width="200px"><a href="/admins/view_report?test_id=<%= test.id%>" target="_blank">View Report</td>
-	</tr>
+<ul>
+	<% @tests.each do |test| %>	
+	<li type="disc">
+		<a href="/admins/view_report?test_id=<%= test.id%>" target="_blank"><%= test.name %></a>
+	</li>
 	<% end %>
-</table>
+</ul>
 <% else %>
 <p>
 	There are no test reports to view.
