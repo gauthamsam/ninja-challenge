@@ -100,7 +100,7 @@ class AdminsController < ApplicationController
   def add_test
     @test = Test.new(params[:test])
     @partials = 'admins/tests/view'
-
+    
     @test.admin_id = current_admin.id
 
     if @test.save
@@ -109,11 +109,9 @@ class AdminsController < ApplicationController
     else
       flash[:error] = 'Test could not be created.'
     end
+    
+    redirect_to :action => 'view_tests'
 
-    respond_to do |format|
-      format.html { render :template => 'admins/index' }
-      format.json { head :no_content }
-    end
   end
 
   def show_question
