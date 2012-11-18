@@ -25,9 +25,12 @@
 	<div style="float: left">
 		<h4>Tests created:</h4>
 	</div>
-	<div style="float: right"></div>
+	<div style="float: right">
+		<%= paginate @tests %>
+	</div>
 	<div style="clear: both"></div>
 </div>
+
 <table border="1" class="nc_table">
 	<tr>
 		<th>Test</th>
@@ -52,7 +55,9 @@
 	</tr>
 	<% end %>
 </table>
-<div style="float: right;"></div>
+<div style="float: right;">
+	<%= paginate @tests %>
+</div>
 <div style="clear: both"></div>
 <% else %>
 <p>

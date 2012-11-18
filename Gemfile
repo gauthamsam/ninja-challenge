@@ -73,4 +73,6 @@ gem 'kaminari'
 
 gem 'jquery-datatables-rails'
 
+# PDF generation
+gem 'prawn'
 

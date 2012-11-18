@@ -100,7 +100,7 @@ class AdminsController < ApplicationController
   def add_test
     @test = Test.new(params[:test])
     @partials = 'admins/tests/view'
-    
+
     @test.admin_id = current_admin.id
 
     if @test.save
@@ -109,7 +109,7 @@ class AdminsController < ApplicationController
     else
       flash[:error] = 'Test could not be created.'
     end
-    
+
     redirect_to :action => 'view_tests'
 
   end
@@ -117,7 +117,7 @@ class AdminsController < ApplicationController
   def show_question
     test_id = params[:test_id]
     @question = TestQuestion.new(:test_id => test_id)
-    
+
     @partials = 'admins/tests/questions'
 
     respond_to do |format|
@@ -125,12 +125,12 @@ class AdminsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
+
   def view_all_questions
     test_id = params[:test_id]
     questions_array = TestQuestion.where(:test_id => test_id)
     @questions = Kaminari.paginate_array(questions_array).page(params[:page])
-    
+
     @test = Test.find(test_id)
     @partials = 'admins/tests/view_questions'
 
@@ -143,8 +143,8 @@ class AdminsController < ApplicationController
   def save_question
     @question = TestQuestion.new(params[:test_question])
     @partials = 'admins/tests/view'
-    
-    if @question.save      
+
+    if @question.save
       flash[:notice] = 'Question was successfully saved.'
     else
       flash[:error] = 'Question could not be saved.'
@@ -160,19 +160,20 @@ class AdminsController < ApplicationController
     tests_array = Test.where(:admin_id => current_admin.id)
     @tests = Kaminari.paginate_array(tests_array).page(params[:page])
     @partials = 'admins/tests/view'
-    
+
     respond_to do |format|
       format.html { render :template => 'admins/index' }
       format.json { head :no_content }
     end
   end
 
-#
-# view_reports method display all the tests and their respective links for tests reports
-#
+  #
+  # view_reports method display all the tests and their respective links for tests reports
+  #
 
   def view_reports
-    @tests = Test.where(:admin_id => current_admin.id)
+    test_array = Test.where(:admin_id => current_admin.id)
+    @tests = Kaminari.paginate_array(test_array).page(params[:page])
     @partials = 'admins/tests/view_reports'
     respond_to do |format|
       format.html { render :template => 'admins/index' }
@@ -203,24 +204,22 @@ class AdminsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
 
-#
-# view_report method displays report of a specific test
-#
-# 1. mysql> select student_score,count(*) from student_tests group by student_score;
-# 2. 
-# 3
-#select * from student_tests;
-#+----+------------+---------+---------------+-----------+---------------------+---------------------+
-#| id | student_id | test_id | student_score | submitted | created_at          | updated_at          |
-#+----+------------+---------+---------------+-----------+---------------------+---------------------+
-#|  1 |          2 |       1 |             3 |         1 | 2012-11-12 22:08:58 | 2012-11-12 22:08:58 |
-#|  2 |          3 |       1 |             0 |         1 | 2012-11-12 22:11:17 | 2012-11-12 22:11:17 |
-#|  3 |          4 |       1 |             3 |         1 | 2012-11-12 22:16:14 | 2012-11-12 22:16:14 |
-#+----+------------+---------+---------------+-----------+---------------------+---------------------+
+  #
+  # view_report method displays report of a specific test
+  #
+  # 1. mysql> select student_score,count(*) from student_tests group by student_score;
+  # 2.
+  # 3
+  #select * from student_tests;
+  #+----+------------+---------+---------------+-----------+---------------------+---------------------+
+  #| id | student_id | test_id | student_score | submitted | created_at          | updated_at          |
+  #+----+------------+---------+---------------+-----------+---------------------+---------------------+
+  #|  1 |          2 |       1 |             3 |         1 | 2012-11-12 22:08:58 | 2012-11-12 22:08:58 |
+  #|  2 |          3 |       1 |             0 |         1 | 2012-11-12 22:11:17 | 2012-11-12 22:11:17 |
+  #|  3 |          4 |       1 |             3 |         1 | 2012-11-12 22:16:14 | 2012-11-12 22:16:14 |
+  #+----+------------+---------+---------------+-----------+---------------------+---------------------+
 
-  
   def view_report
     test_id = params[:test_id]
     @test = Test.find(test_id)
@@ -230,11 +229,11 @@ class AdminsController < ApplicationController
     #:select => 'count(*) count, student_score',
     #:group => 'student_score',
     #)
-    
-    # 
+
+    #
     # crappy code ever .. have to look into it
     #
-    
+
     i = 0
     bar_1_data = []
     names_array = []
@@ -245,48 +244,50 @@ class AdminsController < ApplicationController
       names_array.append(i.to_s)
       i = i + 1
     end
-    
+
     i = 1
     @student_test_table.each do |x|
-      #puts "i" + i.to_s
-      #puts "x.student_score.to_i ==> " + x.student_score.to_s
-      #puts "bar_1_data[x.student_score.to_i] ==> " + bar_1_data[x.student_score.to_i].to_s
-      bar_1_data[x.student_score.to_i] += 1
+    #puts "i" + i.to_s
+    #puts "x.student_score.to_i ==> " + x.student_score.to_s
+    #puts "bar_1_data[x.student_score.to_i] ==> " + bar_1_data[x.student_score.to_i].to_s
+    bar_1_data[x.student_score.to_i] += 1
       if bar_1_data[x.student_score.to_i] > max_in_a_score
-        max_in_a_score =  bar_1_data[x.student_score.to_i]
+      max_in_a_score =  bar_1_data[x.student_score.to_i]
       end
       i = i + 1
     end
-    
+
     i = 0;
     while i <= max_in_a_score do
       stud_max.append(i)
       i = i + 1
     end
-     
+
     color_1 = 'd53711'
     color_2 = '0000ff'
-    
+
     GoogleChart::BarChart.new("700x300", "", :vertical, false) do |bc|
       bc.data "Number of Students", bar_1_data, color_1
       #bc.data "SecondResultBar", bar_2_data, color_2
       bc.axis :y, :labels => stud_max
       bc.axis :x, :range => names_array
-      #bc.show_legend = true
+      bc.show_legend = true
       #bc.stacked = true
       bc.data_encoding = :extended
       bc.shape_marker :circle, :data_set_index => 0, :data_point_index => -1, :pixel_size => 10
       @bar_chart = bc.to_url
     end
-    
-    
+
     @partials = 'admins/tests/view_report'
     respond_to do |format|
       format.html { render :template => 'admins/index' }
+      format.pdf do
+        pdf = ReportsPdf.new(@test, @bar_chart)
+        send_data pdf.render
+      end
       format.json { head :no_content }
     end
-        
+
   end
-  
 
 end

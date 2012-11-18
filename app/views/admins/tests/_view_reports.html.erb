@@ -1,7 +1,7 @@
 <style type="text/css">
 	.nc_table {
 		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-		width: 100%;
+		width: 70%;
 		border-collapse: collapse;
 	}
 	.nc_table td, .nc_table th {
@@ -12,7 +12,7 @@
 	}
 	.nc_table th {
 		font-size: 1.1em;
-		text-align: left;
+		text-align: center;
 		padding-top: 5px;
 		padding-bottom: 4px;
 		background-color: #777777;
@@ -22,16 +22,32 @@
 </style>
 <% if @tests.size > 0 %>
 <div style="margin-bottom: 0px; margin-top: -45px">
-	<h4>View reports for:</h4>
+	<div style="float: left">
+		<h4>You can view/download the reports here.</h4><br/>
+	</div>
+	<div style="float: right">
+		<%= paginate @tests %>
+	</div>
+	<div style="clear: both"></div>
 </div>
 
-<ul>
-	<% @tests.each do |test| %>	
-	<li type="disc">
-		<a href="/admins/view_report?test_id=<%= test.id%>" target="_blank"><%= test.name %></a>
-	</li>
+<table class="nc_table">
+	<tr>
+		<th>Test</th>
+		<th colspan="2">Report</th>
+	</tr>
+	<% @tests.each do |test| %>
+	<tr>	
+	<td><%= test.name %></td>
+	<td><a href="/admins/view_report?test_id=<%= test.id%>" target="_blank">View</a></td>
+	<td><%= link_to "Download", {:controller => "admins", :action => "view_report", :test_id => test.id, :format => "pdf"} %></td>
+	</tr>
 	<% end %>
-</ul>
+</table>
+<div style="float: right;">
+	<%= paginate @tests %>
+</div>
+<div style="clear: both"></div>
 <% else %>
 <p>
 	There are no test reports to view.

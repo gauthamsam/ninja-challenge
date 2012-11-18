@@ -1,5 +1,5 @@
 class Test < ActiveRecord::Base
-  attr_accessible :admin_id, :end_date, :level_id, :max_score, :name, :start_date
+  attr_accessible :admin_id, :duration, :end_date, :level_id, :max_score, :name, :start_date
   
   
   #validates :end_date,  :presence => true
