@@ -157,8 +157,8 @@ class AdminsController < ApplicationController
   end
 
   def view_tests
-    tests_array = Test.where(:admin_id => current_admin.id)
-    @tests = Kaminari.paginate_array(tests_array).page(params[:page])
+    @tests = Test.where(:admin_id => current_admin.id)
+    #@tests = Kaminari.paginate_array(tests_array).page(params[:page])
     @partials = 'admins/tests/view'
 
     respond_to do |format|
@@ -172,8 +172,8 @@ class AdminsController < ApplicationController
   #
 
   def view_reports
-    test_array = Test.where(:admin_id => current_admin.id)
-    @tests = Kaminari.paginate_array(test_array).page(params[:page])
+    @tests = Test.where(:admin_id => current_admin.id)
+    #@tests = Kaminari.paginate_array(test_array).page(params[:page])
     @partials = 'admins/tests/view_reports'
     respond_to do |format|
       format.html { render :template => 'admins/index' }

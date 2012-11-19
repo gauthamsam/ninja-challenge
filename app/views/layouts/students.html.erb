@@ -7,10 +7,21 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<%= stylesheet_link_tag    "application", :media => "all" %>
-		<%= javascript_include_tag "application" %>
+
+		<script type="text/javascript" src="/js/jquery.js"></script>
+		<script src="/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+				$('#dataTable').dataTable({
+					"iDisplayLength": 50
+				});
+			});
+		</script>
+
 		<%= csrf_meta_tags %>
 
 		<!-- Le styles -->
+		<link href="/css/jquery.dataTables.css" rel="stylesheet">
 		<link href="/css/bootstrap.css" rel="stylesheet">
 		<link href="/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -160,8 +171,6 @@
 				</p>
 			</div>
 		</div>
-
-		<script src="/js/jquery.js"></script>
 		<script src="/js/bootstrap-dropdown.js"></script>
 
 	</body>

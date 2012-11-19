@@ -84,8 +84,8 @@ class StudentsController < ApplicationController
 
   # Get all the tests that this student can take
   def view_tests
-    tests_array = Test.where(:level_id => current_student.level_id)
-    @tests = Kaminari.paginate_array(tests_array).page(params[:page])
+    @tests = Test.where(:level_id => current_student.level_id)
+    #@tests = Kaminari.paginate_array(tests_array).page(params[:page])
     @partials = 'students/tests/view'
     respond_to do |format|
       format.html { render :template => 'students/index' }
