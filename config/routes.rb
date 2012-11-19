@@ -15,6 +15,7 @@ NinjaChallenge::Application.routes.draw do
   get 'students/view_tests' => 'students#view_tests'
   get 'students/take_test' => 'students#take_test'
   get 'students/view_report' => 'students#view_report'
+  get 'students/view_reports' => 'students#view_reports'
 
   post 'students/submit_test' => 'students#submit_test'
 

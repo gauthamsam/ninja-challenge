@@ -224,16 +224,6 @@ class AdminsController < ApplicationController
     test_id = params[:test_id]
     @test = Test.find(test_id)
     @student_test_table = StudentTest.where(:test_id => test_id).select('student_id, student_score')
-    #@student_test_chart = StudentTest.find(
-    #:all,
-    #:select => 'count(*) count, student_score',
-    #:group => 'student_score',
-    #)
-
-    #
-    # crappy code ever .. have to look into it
-    #
-
     i = 0
     bar_1_data = []
     names_array = []
@@ -247,9 +237,6 @@ class AdminsController < ApplicationController
 
     i = 1
     @student_test_table.each do |x|
-    #puts "i" + i.to_s
-    #puts "x.student_score.to_i ==> " + x.student_score.to_s
-    #puts "bar_1_data[x.student_score.to_i] ==> " + bar_1_data[x.student_score.to_i].to_s
     bar_1_data[x.student_score.to_i] += 1
       if bar_1_data[x.student_score.to_i] > max_in_a_score
       max_in_a_score =  bar_1_data[x.student_score.to_i]

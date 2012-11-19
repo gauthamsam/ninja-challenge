@@ -93,6 +93,16 @@ class StudentsController < ApplicationController
     end
   end
 
+  def view_reports
+    @tests = Test.where(:level_id => current_student.level_id)
+    #@tests = Kaminari.paginate_array(tests_array).page(params[:page])
+    @partials = 'students/tests/view_reports'
+    respond_to do |format|
+      format.html { render :template => 'students/index' }
+      format.json { head :no_content }
+    end
+  end
+  
   def take_test
     test_id = params[:test_id]
     @test = Test.find(test_id)
@@ -114,16 +124,87 @@ class StudentsController < ApplicationController
 
   end
 
+#
+#
+
+#
+#
+
   def view_report
     test_id = params[:test_id]
     @test = Test.find(test_id)
-    @questions = TestQuestion.where(:test_id => test_id)
+    
     @student_test = StudentTest.where(:test_id => test_id, :student_id => current_student.id)
+    @student_submitted = false
+      
+    #puts "this *************************************** "  
+    #puts @student_test
+    
+    if @student_test.size != 0
+      #puts "this is not nil "
+      @student_submitted = true
+      @questions = TestQuestion.where(:test_id => test_id)
+      @student_test_question = StudentTestQuestion.where(:test_id => test_id, :student_id => current_student.id)
+      @student_test_table = StudentTest.where(:test_id => test_id).select('student_id, student_score')
+    
+      i = 0
+      bar_1_data = []
+      names_array = []
+      stud_max = []
+      max_in_a_score = 0
+      while i <= @test.max_score do
+        bar_1_data.append(0)
+        names_array.append(i.to_s)
+        i = i + 1
+      end
 
-    @student_test_question = StudentTestQuestion.where(:test_id => test_id, :student_id => current_student.id)
-    template_file = 'students/tests/view_report'
+      i = 1
+      @student_test_table.each do |x|
+        bar_1_data[x.student_score.to_i] += 1
+        if bar_1_data[x.student_score.to_i] > max_in_a_score
+          max_in_a_score =  bar_1_data[x.student_score.to_i]
+        end
+        i = i + 1
+      end
+
+      i = 0;
+      while i <= max_in_a_score do
+        stud_max.append(i)
+        i = i + 1
+      end
+
+      color_1 = 'd53711'
+      color_2 = '0000ff'
+
+      GoogleChart::BarChart.new("700x300", "", :vertical, false) do |bc|
+        bc.data "Number of Students", bar_1_data, color_1
+        #bc.data "SecondResultBar", bar_2_data, color_2
+        bc.axis :y, :labels => stud_max
+        bc.axis :x, :range => names_array
+        bc.show_legend = true
+        #bc.stacked = true
+        bc.data_encoding = :extended
+        bc.shape_marker :circle, :data_set_index => 0, :data_point_index => -1, :pixel_size => 10
+        @bar_chart = bc.to_url
+      end
+    ### else part ###### 
+    else
+      #puts "this is nil "
+      @student_submitted = false
+    end
+    
+    @partials = 'students/tests/view_report'
     respond_to do |format|
-      format.html { render :template => template_file }
+      format.html { render :template => 'students/index' }
+      
+      if @student_submitted
+        format.pdf do
+          pdf = ReportsPdf.new(@test, @bar_chart)
+          send_data pdf.render
+        end
+      else
+        puts "test not taken"
+      end
       format.json { head :no_content }
     end
   end
