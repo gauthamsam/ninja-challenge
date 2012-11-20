@@ -11,9 +11,13 @@
 
 <% @questions.each_with_index do |question, question_number| %>
 <div class="question">
-	<div class="question_content" style="font-weight: bold">
+	<div class="question_content" style="font-weight: bold; float: left">
 		<%= @questions.default_per_page * (@questions.current_page - 1) + question_number + 1%>.&nbsp; <%=question.content%>		
 	</div>
+	<div style="float: right">
+		Score: <%=question.score%>
+	</div>
+	<div style="clear: both"></div>
 	<div class="question_choice">
 		<input type="radio" name="group1" value="1">&nbsp;<%=question.choice1%><br/>
 		<input type="radio" name="group1" value="2">&nbsp;<%=question.choice2%><br/>
@@ -21,10 +25,7 @@
 		<input type="radio" name="group1" value="4">&nbsp;<%=question.choice4%><br/>		
 		<div style="font-weight: bold; padding-left: 5px">
 			Answer Choice: <%= question.correct_choice%>
-		</div>
-		<div style="font-weight: bold; padding-left: 5px" >
-			Score: <%= question.score%>
-		</div>
+		</div>		
 	</div>
 </div>
 <hr />
@@ -35,5 +36,3 @@
 <% else %>
 <p>There are no questions for this test.</p>
 <% end %>
-
-

@@ -2,8 +2,9 @@
 
 <% if @questions.size > 0 %>
 <%= form_tag("/students/submit_test") do %>
-<div style="float: left; padding-left: 500px"><h4><%=@test.name%></h4></div> 
-<div style="float: right">Time remaining: 01:00:00</div>
+<div style="float: left; padding-left: 500px"><h4><%=@test.name%></h4></div>
+<div style="float: right; padding: 10px" id="timer" style="width: 100px"></div>
+<div style="clear: both"></div>
 <br/>
 <div style="float: right;"><%= paginate @questions %></div>
 <div style="clear: both"></div>
@@ -40,3 +41,8 @@
 <% else %>
 <p>Sorry, there are no questions for this test. Please come later.</p>
 <% end %>
+<script type="text/javascript">
+	var date = new Date()
+	date.setMinutes(date.getMinutes() + <%= @test.duration %>)
+	$("#timer").countdown({until: date});
+</script>
