@@ -46,7 +46,7 @@
 	</tr>
 
 	<% @questions.each_with_index do |question, question_number| %>
-		<% if (@student_test_question.where(:question_id => question.id).first.student_score == 1) %>
+		<% if @student_test_question.where(:question_id => question.id).first.student_score %>
 		<tr>
 		 <td><%= question.content%></td>
 		 <td><%= question.score%></td>
