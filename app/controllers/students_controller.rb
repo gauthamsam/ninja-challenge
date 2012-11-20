@@ -1,3 +1,7 @@
+
+require 'rubygems'
+require 'google_chart'
+
 class StudentsController < ApplicationController
   before_filter :authenticate_student!
   # GET /students
@@ -95,6 +99,18 @@ class StudentsController < ApplicationController
 
   def view_reports
     @tests = Test.where(:level_id => current_student.level_id)
+    @test_attendance = {}
+    @tests.each do |test|
+      @student_test = StudentTest.where(:test_id => test.id, :student_id => current_student.id)
+      if @student_test.size != 0
+        @test_attendance[test.id] = true
+      else
+        @test_attendance[test.id] = false
+      end  
+    end
+    
+    puts @test_attendance
+    
     #@tests = Kaminari.paginate_array(tests_array).page(params[:page])
     @partials = 'students/tests/view_reports'
     respond_to do |format|
@@ -197,14 +213,12 @@ class StudentsController < ApplicationController
     respond_to do |format|
       format.html { render :template => 'students/index' }
       
-      if @student_submitted
-        format.pdf do
-          pdf = ReportsPdf.new(@test, @bar_chart)
-          send_data pdf.render
-        end
-      else
-        puts "test not taken"
+      #if @student_submitted
+      format.pdf do
+        pdf = ReportsPdf.new(@test, @bar_chart)
+        send_data pdf.render
       end
+      
       format.json { head :no_content }
     end
   end
