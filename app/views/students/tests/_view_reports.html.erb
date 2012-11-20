@@ -49,7 +49,7 @@
 				<% if @test_attendance[test.id] == true%>
 					<td><a href="/students/view_report?test_id=<%= test.id%>" target="_blank">View</a> &nbsp; | &nbsp; <%= link_to "Download", {:controller => "students", :action => "view_report", :test_id => test.id, :format => "pdf"} %></td>
 				<% else %>
-					<td>No Report, <a href="/students/take_test?test_id=<%= test.id%>">Take Test here</a></td>
+					<td>No Report, <a href="/students/take_test?test_id=<%= test.id%>">Take test</a></td>
 				<% end %>			
 			
 			

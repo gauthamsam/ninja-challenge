@@ -24,18 +24,14 @@
 
 </style>
 
-
-
-
-<div style="clear: both"></div>
-
+<div style="margin-bottom: 0px; margin-top: -45px"></div>
 
 <% if @student_submitted == true %>
 	
 	
 	<% if @questions.size > 0 %>
 	<h3>Report card for <%=@test.name%></h3>
-	<h4>Total Score : <%= @student_test.first.student_score %></h4>
+	<h4>Total Score: <%= @student_test.first.student_score %></h4>
 	<table id="reports">
 	<tr>
   		<th width="1200px">Question </th>
@@ -74,7 +70,7 @@
 	</div>
 	
 	<% else %>
-		No Questions in this test
+		No questions in this test
 	<% end %>
 	</table>
 	
