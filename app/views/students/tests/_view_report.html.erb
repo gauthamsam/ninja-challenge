@@ -38,15 +38,15 @@
 	<h4>Total Score : <%= @student_test.first.student_score %></h4>
 	<table id="reports">
 	<tr>
-  		<th>Question </th>
-  		<th>Score</th>
-  		<th>Correct Choice</th>
-  		<th>Your Choice</th>
-  		<th>Your Score</th>
+  		<th width="1200px">Question </th>
+  		<th width="200px">Score</th>
+  		<th width="200px">Correct Choice</th>
+  		<th width="200px">Your Choice</th>
+  		<th width="200px">Your Score</th>
 	</tr>
 
 	<% @questions.each_with_index do |question, question_number| %>
-		<% if @student_test_question.where(:question_id => question.id).first.student_score %>
+		<% if @student_test_question.where(:question_id => question.id).first %>
 		<tr>
 		 <td><%= question.content%></td>
 		 <td><%= question.score%></td>
@@ -59,8 +59,8 @@
 		 <td><%= question.content%></td>
 		 <td><%= question.score%></td>
 		 <td><%= question.correct_choice%></td>
-		 <td><%= @student_test_question.where(:question_id => question.id).first.student_choice %></td>
-		 <td><%= @student_test_question.where(:question_id => question.id).first.student_score %></td>
+		 <td> None </td>
+		 <td> 0 </td>
 		</tr>
 		<% end %>
 	<% end %>
