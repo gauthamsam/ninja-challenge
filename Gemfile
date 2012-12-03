@@ -76,3 +76,4 @@ gem 'jquery-datatables-rails'
 # PDF generation
 gem 'prawn'
 
+gem 'dalli'

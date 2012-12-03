@@ -88,7 +88,8 @@ class StudentsController < ApplicationController
 
   # Get all the tests that this student can take
   def view_tests
-    @tests = Test.where(:level_id => current_student.level_id)
+    #@tests = Test.where(:level_id => current_student.level_id)
+    @tests = Test.all_tests_by_level_cached(current_student.level_id)
     #@tests = Kaminari.paginate_array(tests_array).page(params[:page])
     @partials = 'students/tests/view'
     respond_to do |format|
@@ -98,7 +99,8 @@ class StudentsController < ApplicationController
   end
 
   def view_reports
-    @tests = Test.where(:level_id => current_student.level_id)
+    #@tests = Test.where(:level_id => current_student.level_id)
+    @tests = Test.all_tests_by_level_cached(current_student.level_id)
     @test_attendance = {}
     @tests.each do |test|
       @student_test = StudentTest.where(:test_id => test.id, :student_id => current_student.id)
@@ -106,10 +108,10 @@ class StudentsController < ApplicationController
         @test_attendance[test.id] = true
       else
         @test_attendance[test.id] = false
-      end  
+      end
     end
     
-    puts @test_attendance
+    #puts @test_attendance
     
     #@tests = Kaminari.paginate_array(tests_array).page(params[:page])
     @partials = 'students/tests/view_reports'
@@ -130,7 +132,7 @@ class StudentsController < ApplicationController
       return
     end
     template_file = 'students/tests/take_test'
-    questions_array = TestQuestion.where(:test_id => test_id)
+    questions_array = TestQuestion.all_cached(test_id)
     @questions = Kaminari.paginate_array(questions_array).page(params[:page])
 
     respond_to do |format|
@@ -139,12 +141,6 @@ class StudentsController < ApplicationController
     end
 
   end
-
-#
-#
-
-#
-#
 
   def view_report
     test_id = params[:test_id]
@@ -159,7 +155,7 @@ class StudentsController < ApplicationController
     if @student_test.size != 0
       #puts "this is not nil "
       @student_submitted = true
-      @questions = TestQuestion.where(:test_id => test_id)
+      @questions = TestQuestion.all_cached(test_id)
       @student_test_question = StudentTestQuestion.where(:test_id => test_id, :student_id => current_student.id)
       @student_test_table = StudentTest.where(:test_id => test_id).select('student_id, student_score')
     
@@ -227,7 +223,7 @@ class StudentsController < ApplicationController
     test_id = params[:test_id]
     @test = Test.find(test_id)
 
-    @questions = TestQuestion.where(:test_id => test_id)
+    @questions = TestQuestion.all_cached(test_id)
 
     total_score = 0
 

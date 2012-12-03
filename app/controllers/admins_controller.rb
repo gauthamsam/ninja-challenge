@@ -106,6 +106,7 @@ class AdminsController < ApplicationController
     if @test.save
       @tests = Test.where(:admin_id => current_admin.id)
       flash[:notice] = 'Test was successfully created.'
+      Test.expire_test_cache(current_admin.id)
     else
       flash[:error] = 'Test could not be created.'
     end
@@ -117,6 +118,7 @@ class AdminsController < ApplicationController
   def show_question
     test_id = params[:test_id]
     @question = TestQuestion.new(:test_id => test_id)
+    
 
     @partials = 'admins/tests/questions'
 
@@ -128,7 +130,9 @@ class AdminsController < ApplicationController
 
   def view_all_questions
     test_id = params[:test_id]
-    questions_array = TestQuestion.where(:test_id => test_id)
+    
+    #questions_array = TestQuestion.where(:test_id => test_id)
+    questions_array = TestQuestion.all_cached(test_id)
     @questions = Kaminari.paginate_array(questions_array).page(params[:page])
 
     @test = Test.find(test_id)
@@ -146,6 +150,7 @@ class AdminsController < ApplicationController
 
     if @question.save
       flash[:notice] = 'Question was successfully saved.'
+      TestQuestion.expire_test_question_cache(@question.test_id)
     else
       flash[:error] = 'Question could not be saved.'
     end
@@ -157,7 +162,8 @@ class AdminsController < ApplicationController
   end
 
   def view_tests
-    @tests = Test.where(:admin_id => current_admin.id)
+    #@tests = Test.where(:admin_id => current_admin.id)
+    @tests = Test.all_cached(current_admin.id)
     #@tests = Kaminari.paginate_array(tests_array).page(params[:page])
     @partials = 'admins/tests/view'
 
@@ -172,7 +178,7 @@ class AdminsController < ApplicationController
   #
 
   def view_reports
-    @tests = Test.where(:admin_id => current_admin.id)
+    @tests = Test.all_cached(current_admin.id)
     #@tests = Kaminari.paginate_array(test_array).page(params[:page])
     @partials = 'admins/tests/view_reports'
     respond_to do |format|

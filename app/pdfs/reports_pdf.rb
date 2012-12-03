@@ -16,7 +16,7 @@ class ReportsPdf < Prawn::Document
   end
   
   def insert_chart
-    image_name = 'chart.jpg'
+    image_name = 'chart.jpg'                                        
     # Create the image first and then give that path to the image renderer.
     create_image(image_name)    
     image image_name    
