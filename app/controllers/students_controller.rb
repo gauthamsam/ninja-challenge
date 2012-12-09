@@ -132,8 +132,8 @@ class StudentsController < ApplicationController
       return
     end
     template_file = 'students/tests/take_test'
-    questions_array = TestQuestion.all_cached(test_id)
-    @questions = Kaminari.paginate_array(questions_array).page(params[:page])
+    @questions = TestQuestion.all_cached(test_id)
+    #@questions = Kaminari.paginate_array(questions_array).page(params[:page])
 
     respond_to do |format|
       format.html { render :template => template_file }
@@ -234,6 +234,7 @@ class StudentsController < ApplicationController
       @student_test_question.test_id = test_id
       @student_test_question.question_id = question.id
       @student_test_question.student_choice = params[question.id.to_s].to_i
+      
 
       # Answer choice 0 refers to unanswered.
       #if !@student_test_question.student_choice
