@@ -188,8 +188,8 @@ class StudentsController < ApplicationController
       color_1 = 'd53711'
       color_2 = '0000ff'
 
-      GoogleChart::BarChart.new("700x300", "", :vertical, false) do |bc|
-        bc.data "Number of Students", bar_1_data, color_1
+      GoogleChart::BarChart.new("700x300", "Performance Comparison", :vertical, false) do |bc|
+        bc.data "No. Students", bar_1_data, color_1
         #bc.data "SecondResultBar", bar_2_data, color_2
         bc.axis :y, :labels => stud_max
         bc.axis :x, :range => names_array
