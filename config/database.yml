@@ -27,7 +27,7 @@ production:
   database: nc_dev
   username: root
   password: root
-  host: localhost
+  host: 10.62.123.119
   #socket: /tmp/mysql.sock
   pool: 5
   timeout: 5000
