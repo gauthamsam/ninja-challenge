@@ -7,11 +7,8 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @students }
+      format.html # index.html.erb      
     end
   end
 
@@ -211,7 +208,7 @@ class StudentsController < ApplicationController
       
       #if @student_submitted
       format.pdf do
-        pdf = ReportsPdf.new(@test, @bar_chart)
+        pdf = ReportsPdf.new(@test, [@bar_chart])
         send_data pdf.render
       end
       

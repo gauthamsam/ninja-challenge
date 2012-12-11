@@ -1,12 +1,16 @@
 require 'open-uri'
 
 class ReportsPdf < Prawn::Document
-  def initialize(test, chart)
+  def initialize(test, charts)
     super()
     @test = test
-    @chart = chart
-    insert_text 
-    insert_chart
+    
+    insert_text
+    charts.each do |chart|
+      @chart = chart
+      insert_chart
+    end 
+    
     insert_footer
   end
 

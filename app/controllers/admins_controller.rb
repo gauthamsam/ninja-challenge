@@ -6,11 +6,8 @@ class AdminsController < ApplicationController
   # GET /admins
   # GET /admins.json
   def index
-    @admins = Admin.all
-
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @admins }
+      format.html # index.html.erb      
     end
   end
 
@@ -118,7 +115,6 @@ class AdminsController < ApplicationController
   def show_question
     test_id = params[:test_id]
     @question = TestQuestion.new(:test_id => test_id)
-    
 
     @partials = 'admins/tests/questions'
 
@@ -130,7 +126,7 @@ class AdminsController < ApplicationController
 
   def view_all_questions
     test_id = params[:test_id]
-    
+
     #questions_array = TestQuestion.where(:test_id => test_id)
     questions_array = TestQuestion.all_cached(test_id)
     @questions = Kaminari.paginate_array(questions_array).page(params[:page])
@@ -242,24 +238,57 @@ class AdminsController < ApplicationController
     end
 
     i = 1
+    
+    first_level = 0
+    second_level = 0
+    third_level = 0
+    fourth_level = 0
+
+    percentage_score = []
+    
     @student_test_table.each do |x|
-    bar_1_data[x.student_score.to_i] += 1
+      marks = x.student_score.to_i
+      if marks < (0.3 * @test.max_score)
+        first_level += 1
+
+      elsif (marks > (0.3 * @test.max_score)) && (marks < (0.5 * @test.max_score))
+        second_level += 1
+
+      elsif (marks > (0.5 * @test.max_score)) && (marks < (0.8 * @test.max_score))
+        third_level += 1
+      else
+        fourth_level += 1
+
+      end
+      
+      bar_1_data[x.student_score.to_i] += 1
       if bar_1_data[x.student_score.to_i] > max_in_a_score
       max_in_a_score =  bar_1_data[x.student_score.to_i]
       end
       i = i + 1
+      
     end
+    
+    perentage_score.append(first_level)
+    perentage_score.append(first_level + second_level)
+    perentage_score.append(first_level + second_level + third_level)
+    perentage_score.append(first_level + second_level + third_level + fourth_level)
 
+    puts "first_level " + first_level.to_s
     i = 0;
     while i <= max_in_a_score do
       stud_max.append(i)
       i = i + 1
     end
 
+    
+    total_students = first_level + second_level + third_level + fourth_level
+    
+    
     color_1 = 'd53711'
     color_2 = '0000ff'
 
-    GoogleChart::BarChart.new("700x300", "Students' Performance", :vertical, false) do |bc|
+    GoogleChart::BarChart.new("800x300", "Students' Performance", :vertical, false) do |bc|
       bc.data "No. Students", bar_1_data, color_1
       #bc.data "SecondResultBar", bar_2_data, color_2
       bc.axis :y, :labels => stud_max
@@ -270,12 +299,30 @@ class AdminsController < ApplicationController
       bc.shape_marker :circle, :data_set_index => 0, :data_point_index => -1, :pixel_size => 10
       @bar_chart = bc.to_url
     end
+    
+    
+    GoogleChart::PieChart.new('320x200', "Marks Distribution", false) do |pc|
+      pc.data "< 30%", 25#(first_level / total_students * 100)
+      pc.data "30 - 50%", 32#(second_level / total_students * 100)
+      pc.data "51 - 80%", 40#(third_level / total_students * 100)
+      pc.data "> 80%", 3#(fourth_level / total_students * 100)
+      @pie_chart = pc.to_url
+    end
+
+    
+    lc = GoogleChart::LineChart.new("400x200", "Cumulative Graph", false)
+    lc.data "Student percentage", [1, 5, 7, 10, 12, 15, 20], '00ff00'
+    lc.axis :y, :range => [0, @test.max_score], :font_size => 10, :alignment => :center
+    lc.axis :x, :range => [2, 3, 10, 25, 30, 45, 100], :font_size => 10
+    lc.show_legend = true
+    lc.shape_marker :circle, :color => '0000ff', :data_set_index => 0, :data_point_index => -1, :pixel_size => 10
+    @line_chart = lc.to_url
 
     @partials = 'admins/tests/view_report'
     respond_to do |format|
       format.html { render :template => 'admins/index' }
       format.pdf do
-        pdf = ReportsPdf.new(@test, @bar_chart)
+        pdf = ReportsPdf.new(@test, [@bar_chart, @pie_chart])
         send_data pdf.render
       end
       format.json { head :no_content }
