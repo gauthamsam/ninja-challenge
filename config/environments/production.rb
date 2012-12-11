@@ -37,7 +37,7 @@ NinjaChallenge::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
  
-  config.cache_store = :dalli_store, 'localhost',
+  config.cache_store = :dalli_store, '10.39.129.36',
   { :namespace => 'ninja_challenge', :expires_in => 1.day, :compress => true }
 
 end
