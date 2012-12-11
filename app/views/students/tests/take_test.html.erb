@@ -32,6 +32,7 @@
 
 <input type="hidden" name="test_id" value="<%=@test.id%>">
 <div align="center">
+	<%= submit_tag "Submit Test", :class => 'btn btn-primary'%>
 </div>
 <% end %>
 <!-- It should never go the else part. The teachers are expected to have created the questions before the test start date. -->

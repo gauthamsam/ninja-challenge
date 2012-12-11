@@ -269,10 +269,10 @@ class AdminsController < ApplicationController
       
     end
     
-    perentage_score.append(first_level)
-    perentage_score.append(first_level + second_level)
-    perentage_score.append(first_level + second_level + third_level)
-    perentage_score.append(first_level + second_level + third_level + fourth_level)
+    percentage_score.append(first_level)
+    percentage_score.append(first_level + second_level)
+    percentage_score.append(first_level + second_level + third_level)
+    percentage_score.append(first_level + second_level + third_level + fourth_level)
 
     puts "first_level " + first_level.to_s
     i = 0;
